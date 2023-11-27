@@ -123,7 +123,8 @@ namespace nsK2EngineLow {
 
 		void UpdateWrapper()
 		{
-			if (m_isActive && m_isStart && !m_isDead) {
+			if (m_isActive && m_isStart && !m_isDead) 
+			{
 				Update();
 			}
 		}
