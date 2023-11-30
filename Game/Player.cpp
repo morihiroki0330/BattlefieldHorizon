@@ -13,6 +13,11 @@ Player::Player()
 	M_PlayerController.Init(75.0f, 50.0f, M_PlayerPosition);
 }
 
+Player::~Player()
+{
+	DeleteGO(P_Gun);
+}
+
 bool Player::Start()
 {
 	P_Game = FindGO<Game>("game");
@@ -31,6 +36,11 @@ void Player::Update()
     M_PlayerPosition = M_PlayerController.Execute(M_PlayerSpeed, 1.0f / 60.0f);
     M_PlayerModel.SetPosition(M_PlayerPosition);
 	M_PlayerModel.Update();
+
+	swprintf_s(M_X, 256, L"%f", M_PlayerPosition.y);
+	M_FX.SetText(M_X);
+	M_FX.SetPosition({300.0f,0.0f,0.0f});
+	M_FX.SetScale(1.0f);
 }
 
 void Player::PlayerMove()
@@ -84,6 +94,8 @@ void Player::PlayerDash()
 void Player::PlayerFall()
 {
 	M_PlayerSpeed.y -= 10.0f;
+	if (M_PlayerPosition.y > 1900.0f)
+	{M_PlayerPosition.y = 500.0f;}
 }
 
 void Player::InitValue()
@@ -101,4 +113,5 @@ void Player::InitValue()
 void Player::Render(RenderContext& rc)
 {
 	M_PlayerModel.Draw(rc);
+	M_FX.Draw(rc);
 }

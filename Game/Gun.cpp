@@ -8,7 +8,10 @@ Gun::Gun()
 {
 	M_Gun.P_GunSight = NewGO<GunSight>(0, "gunsight");
 }
-
+Gun::~Gun()
+{
+	DeleteGO(M_Gun.P_GunSight);
+}
 void Gun::Update()
 {
 	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && !M_CoolDownFlag)

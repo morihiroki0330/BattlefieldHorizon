@@ -6,6 +6,7 @@
 Bullet::Bullet()
 {
 	M_BulletModel.Init("Assets/modelData/Gun/Bullet.tkm");
+	M_BulletGhost.CreateBox({M_BulletPosition},Quaternion::Identity,Vector3::One * 10.0f);
 }
 bool Bullet::Start()
 {
@@ -23,7 +24,11 @@ bool Bullet::Start()
 }
 void Bullet::Update()
 {
+	DeadTime++;
+	if (DeadTime >= 29)
+	{BulletDead();}
 	Move();
+	M_BulletGhost.SetPosition(M_BulletPosition);
 	M_BulletModel.SetPosition(M_BulletPosition);
 	M_BulletModel.Update();
 }

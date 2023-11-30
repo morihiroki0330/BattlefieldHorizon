@@ -30,6 +30,9 @@ public:
 	void DecisionDataSet(float  Wide, float Height, float PositionX, float PositionY, int ObjectName, int Tag);
 	void DecisionDataSet(float  Wide, float Height, float PositionX, float PositionY, int ObjectName, int Tag, int& Number);
 
+	//当たり判定の削除
+	void DecisionDataDelete(int ObjectName);
+
 	//コピー
 	bool CopyDecisionData(ObjectData& Decision, int ObjectName);//【本体】のコピー
 	bool CopyDecisionsData(ObjectData& Decision, int Tag, int Count);//【タグが付いた複数の本体】のコピー

@@ -10,6 +10,7 @@
 #include "GameCamera.h"
 #include "Mouse.h"
 #include "Fade.h"
+#include "SkyCube.h"
 Game::Game()
 {
 	PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
@@ -18,7 +19,7 @@ Game::Game()
 	S_Tool.P_Collision  = NewGO<DimensionalCollision>(0, "collision");
 	S_Tool.P_Sound      = NewGO<Sound>(0, "sound");
 	
-	S_Tool.P_Mouse      = NewGO<Mouse>(0, "mouse");
+	S_Tool.P_Mouse      = NewGO<Mouse>(1, "mouse");
 	S_Tool.P_Fade       = NewGO<Fade>(1, "fade");
 }
 

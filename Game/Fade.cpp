@@ -2,7 +2,8 @@
 #include "Fade.h"
 Fade::Fade()
 {
-	M_FadeTexture.Init("Assets/Sprite/Fade.DDS", 1920.0f, 1080.0f, true);
+	//M_FadeTexture.Init("Assets/Sprite/Fade.DDS", 1920.0f, 1080.0f, true);
+	M_FadeTexture.Init("Assets/Sprite/Black.DDS", 1920.0f, 1080.0f, true);
 	M_FadeTexture.Update();
 }
 void Fade::ButtonFade(SpriteRender& Button, bool Press_Button)

@@ -1,4 +1,5 @@
 #pragma once
+#include "physics/PhysicsGhostObject.h"
 class GameCamera;
 class Player;
 class Bullet : public IGameObject
@@ -15,9 +16,15 @@ public:
 		M_BulletPosition.y += M_BulletSpeed.y;
 		M_BulletPosition.z += M_BulletSpeed.z;
 	}
+
+	bool BulletIsSelf(const btCollisionObject& contactObject)
+	{return M_BulletGhost.IsSelf(contactObject);}
+
+	void BulletDead()
+	{DeleteGO(this);}
 private:
 	ModelRender M_BulletModel;
-
+	PhysicsGhostObject M_BulletGhost;
 	Vector3 M_BulletPosition = { 0.0f,0.0f,0.0f };
 	Vector3 M_BulletSpeed    = { 0.0f,0.0f,0.0f };
 
@@ -25,5 +32,7 @@ private:
 
 	GameCamera* P_GameCamera = nullptr;
 	Player* P_Player         = nullptr;
+
+	int DeadTime = 0;
 };
 

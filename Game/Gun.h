@@ -10,6 +10,7 @@ class Gun : public IGameObject
 {
 public:
 	Gun();
+	~Gun();
 	void Update();
 private:
 	GunComponent M_Gun;
