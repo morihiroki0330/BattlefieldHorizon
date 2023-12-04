@@ -71,6 +71,8 @@ void BattlefieldHorizon::Create(int Number)
 		S_Object.P_GameCamera = NewGO<GameCamera>(0, "gamecamera");
 
 		S_Enemy.P_EnemySpawner = NewGO<EnemySpawner>(0, "enemyspawner");
+
+		S_Interface.P_Ui = NewGO<Ui>(0, "ui");
 		break;
 	case 2:
 		DeleteGO(S_Player.P_Player);
@@ -78,6 +80,7 @@ void BattlefieldHorizon::Create(int Number)
 		DeleteGO(S_Object.P_GameCamera);
 		DeleteGO(S_Enemy.P_EnemySpawner);
 		DeleteGO(S_Effect.P_Sky);
+		DeleteGO(S_Interface.P_Ui);
 
 		S_Effect.P_Fade->StartFadeIn();
 

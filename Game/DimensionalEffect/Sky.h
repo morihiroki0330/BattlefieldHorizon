@@ -22,5 +22,9 @@ private:
 	const wchar_t* M_TextureFilePaths[5];
 	ModelRender M_SkyBox;
 	EnSkyBoxType Type = SkyBoxType_Morning;
+
+	ModelRender M_Collision;
+	Vector3 M_CollisionPosition = { 0.0f,0.0f,0.0f };
+	PhysicsStaticObject M_PhysicsStaticObject;
 };
 

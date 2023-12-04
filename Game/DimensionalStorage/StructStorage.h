@@ -208,3 +208,8 @@ struct DataEnemy
 
 	bool M_CoolFlag = false;
 };
+
+struct DataUi
+{
+	SpriteRender Back;
+};

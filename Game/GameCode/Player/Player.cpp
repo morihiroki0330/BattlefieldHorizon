@@ -5,7 +5,8 @@
 #include "Operation/Operation.h"
 Player::Player()
 {	
-	S_Player.M_PlayerModel.Init("Assets/modelData/Character/Character.tkm");
+	//S_Player.M_PlayerModel.Init("Assets/modelData/Character/Character.tkm");
+	S_Player.M_PlayerModel.Init("Assets/modelData/Enemy/Enemy.tkm");
 	S_Player.M_PlayerController.Init(75.0f, 50.0f, S_Player.M_PlayerPosition);
 }
 Player::~Player()

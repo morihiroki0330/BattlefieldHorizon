@@ -22,6 +22,10 @@ bool Sky::Start()
 	InitData.m_expandShaderResoruceView[0] = &M_Texture[Type];
 	M_SkyBox.InitForwardRendering(InitData);
 	M_SkyBox.Update();
+
+	M_Collision.Init("Assets/modelData/SkyBox/Collision.tkm");
+	M_PhysicsStaticObject.CreateFromModel(M_Collision.GetModel(), M_Collision.GetModel().GetWorldMatrix());
+	M_Collision.Update();
 	return true;
 }
 
