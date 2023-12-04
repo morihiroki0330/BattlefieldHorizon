@@ -123,3 +123,6 @@ static const int MAX_BONE = 512;	// ƒ{[ƒ“‚ÌÅ‘å”B
 #include "Camera/SpringCamera.h"
 #include "physics/PhysicsSphereObject.h"
 #include "physics/PhysicsStaticObjectPos.h"
+
+#include "level2D/Level2DRender.h"
+#include "level2D/MapChip2DRender.h"
