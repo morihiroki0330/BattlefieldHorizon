@@ -197,11 +197,14 @@ struct DataEnemySpawner
 struct DataEnemy
 {
 	ModelRender M_EnemyModel;
+
 	Vector3 M_EnemyPosition = { 0.0f,0.0f,0.0f };
-	Vector3 M_EnemySpeed = { 0.0f,0.0f,0.0f };
+	Vector3 M_EnemySpeed    = { 0.0f,0.0f,0.0f };
+
 	CharacterController M_EnemyController;
 
-	int M_EnemyHp = 2;
+	int M_EnemyHp  = 2;
 	int M_CoolTime = 0;
+
 	bool M_CoolFlag = false;
 };
