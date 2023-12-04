@@ -7,7 +7,7 @@
 #include "tkFile/TkaFile.h"
 #include "graphics/Shader.h"
 #include "time/FPSLimitter.h"
-#include "RenderingEngine.h"
+#include "graphics/RenderingEngine.h"
 
 namespace nsK2EngineLow {
 	class GraphicsEngine;
