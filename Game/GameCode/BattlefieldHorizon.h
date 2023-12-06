@@ -13,6 +13,14 @@ public:
 	void Reset();
 	void ClearFlag()
 	{M_ClearFlag = true;}
+
+	void ScoreAdd(int Score)
+	{M_Score += Score;}
+
+	int GetWave()
+	{return M_Wave;}
+	int GetScore()
+	{return M_Score;}
 private:
 	ClassInterface S_Interface;
 	ClassPlayer S_Player;
@@ -24,5 +32,8 @@ private:
 
 	bool Clear = false;
 	bool M_ClearFlag = false;
+
+	int M_Wave = 1;
+	int M_Score = 0;
 };
 

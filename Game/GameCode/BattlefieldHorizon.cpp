@@ -72,7 +72,7 @@ void BattlefieldHorizon::Create(int Number)
 
 		S_Enemy.P_EnemySpawner = NewGO<EnemySpawner>(0, "enemyspawner");
 
-		S_Interface.P_Ui = NewGO<Ui>(0, "ui");
+		S_Interface.P_Ui = NewGO<Ui>(1, "ui");
 		break;
 	case 2:
 		DeleteGO(S_Player.P_Player);

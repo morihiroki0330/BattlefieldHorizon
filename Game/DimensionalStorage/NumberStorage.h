@@ -27,6 +27,7 @@ enum MouseFlagStorage
 
 enum SoundNumberStorage
 {
-	SE_GUNSHOT
+	SE_GUNSHOT,
+	SE_GUNSHOTOUT,
 };
 

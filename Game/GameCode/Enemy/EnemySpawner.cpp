@@ -10,7 +10,7 @@ EnemySpawner::EnemySpawner()
 bool EnemySpawner::Start()
 {
 	S_Player.P_Player = FindGO<Player>("player");
-	S_Game.P_Horizon  = FindGO<BattlefieldHorizon>("horizon");
+	S_Game.P_Horizon = FindGO<BattlefieldHorizon>("horizon");
 
 	S_Spawner.M_EnemySpawnerPosition.x = S_Player.P_Player->GetPosition().x;
 	S_Spawner.M_EnemySpawnerPosition.z = S_Player.P_Player->GetPosition().z + 500.0f;
@@ -57,4 +57,10 @@ void EnemySpawner::EnemyCreate()
 			EnemyGenerate();
 		}
 	}
+}
+
+void EnemySpawner::EnemyDead(int Score)
+{
+	S_Game.P_Horizon->ScoreAdd(Score);
+	S_Spawner.M_EnemyCount--;
 }

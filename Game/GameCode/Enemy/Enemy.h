@@ -21,6 +21,7 @@ public:
 private:
 	DataEnemy S_Enemy;
 
+	ClassGame S_Game;
 	ClassPlayer S_Player;
 	ClassGun S_Bullet;
 	ClassEnemy S_EnemySpawner;

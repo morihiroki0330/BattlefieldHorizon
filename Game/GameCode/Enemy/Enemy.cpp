@@ -33,9 +33,17 @@ void Enemy::Render(RenderContext& rc)
 
 void Enemy::EnemyMove()
 {
-	S_Enemy.M_EnemySpeed.x = (S_Player.P_Player->GetPosition().x - S_Enemy.M_EnemyPosition.x);
+	float directionX = S_Player.P_Player->GetPosition().x - S_Enemy.M_EnemyPosition.x;
+	float directionZ = S_Player.P_Player->GetPosition().z - S_Enemy.M_EnemyPosition.z;
 
-	S_Enemy.M_EnemySpeed.z = (S_Player.P_Player->GetPosition().z - S_Enemy.M_EnemyPosition.z);
+	// ベクトルを正規化
+	float distance = std::sqrt(directionX * directionX + directionZ * directionZ);
+	directionX /= distance;
+	directionZ /= distance;
+
+	// 一定の速度で移動
+	S_Enemy.M_EnemySpeed.x = directionX * 400.0f;
+	S_Enemy.M_EnemySpeed.z = directionZ * 400.0f;
 }
 void Enemy::EnemyFall()
 {
@@ -47,7 +55,7 @@ void Enemy::EnemyDead()
 {
 	if (S_Enemy.M_EnemyHp <= 0)
 	{
-		S_EnemySpawner.P_EnemySpawner->EnemyDead();
+		S_EnemySpawner.P_EnemySpawner->EnemyDead(S_Enemy.M_EnemyScore);
 		DeleteGO(this);
 	}
 }

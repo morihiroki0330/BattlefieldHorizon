@@ -13,14 +13,28 @@ UIに表示するステータス
 ・背景〇
 */
 #include "DimensionalStorage/StructStorage.h"
+#include "level2D/Level2DRender.h"
 class Ui : public IGameObject
 {
 public:
 	bool Start();
 	void Update();
 	void Render(RenderContext& rc);
+
+	void Wave();
+	void BulletCount();
+	void EnemyCount();
+	void ScoreCount();
 private:
-	SpriteRender Back;
+	DataUi S_Ui;
+	DataUiTexture S_UiTexture;
+	DataUiPosition S_UiPosition;
+	
+	ClassGame S_Game;
+	ClassGun S_Gun;
 	ClassPlayer S_Player;
+	ClassEnemy S_Enemy;
+
+	Level2DRender Level2D;
 };
 
