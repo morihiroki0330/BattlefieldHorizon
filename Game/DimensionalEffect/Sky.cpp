@@ -6,7 +6,6 @@ Sky::Sky()
 	M_TextureFilePaths[SkyBoxType_Noon] = L"Assets/modelData/SkyBox/SkyBox_Noon.DDS";
 	M_TextureFilePaths[SkyBoxType_Night] = L"Assets/modelData/SkyBox/SkyBox_Night.DDS";
 }
-
 bool Sky::Start()
 {
 	ModelInitData InitData;
@@ -16,9 +15,7 @@ bool Sky::Start()
 	InitData.m_psEntryPointFunc = "PSMain";
 
 	for (int i = 0; i < SkyBoxType_Num; i++)
-	{
-		M_Texture[i].InitFromDDSFile(M_TextureFilePaths[i]);
-	}
+	{M_Texture[i].InitFromDDSFile(M_TextureFilePaths[i]);}
 	InitData.m_expandShaderResoruceView[0] = &M_Texture[Type];
 	M_SkyBox.InitForwardRendering(InitData);
 	M_SkyBox.Update();
@@ -28,12 +25,6 @@ bool Sky::Start()
 	M_Collision.Update();
 	return true;
 }
-
-void Sky::Update()
-{
-	M_SkyBox.Update();
-}
-
 void Sky::Render(RenderContext& rc)
 {
 	M_SkyBox.Draw(rc);
