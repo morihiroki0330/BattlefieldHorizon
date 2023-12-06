@@ -31,3 +31,18 @@ enum SoundNumberStorage
 	SE_GUNSHOTOUT,
 };
 
+enum FadeStateStorage
+{
+	ENSTATE_FADEIN = 1,
+	ENSTATE_FADEOUT = 2,
+	ENSTATE_IDLE = 3,
+};
+
+enum SkyBoxStorage
+{
+	SkyBoxType_Morning,
+	SkyBoxType_Noon,
+	SkyBoxType_Night,
+	SkyBoxType_Num
+};
+
