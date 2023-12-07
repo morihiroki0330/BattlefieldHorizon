@@ -6,19 +6,21 @@ bool Enemy::Start()
 {
 	S_Enemy.M_EnemyModel.Init("Assets/modelData/Enemy/Enemy.tkm");
 	S_Enemy.M_EnemyController.Init(50.0f, 50.0f, S_Enemy.M_EnemyPosition);
-	S_Player.P_Player = FindGO<Player>("player");
+	
 	S_EnemySpawner.P_EnemySpawner = FindGO<EnemySpawner>("enemyspawner");
 	return true;
 }
 void Enemy::Update()
 {
-	S_Bullet.P_Bullet = FindGO<Bullet>("bullet");
-	if (S_Bullet.P_Bullet != nullptr)
+	S_Player.P_Player = FindGO<Player>("player");
+	P_Bullet = FindGOs<Bullet>("bullet");
+	if (P_Bullet.size() != 0)
 	{EnemyHit();}
 	if (S_Enemy.M_EnemyController.IsOnGround())
 	{EnemyMove();}
 	EnemyFall();
 	EnemyDead();
+	EnemyToPlayer();
 
 	EnemyCoolTime();
 
@@ -63,10 +65,24 @@ void Enemy::EnemyHit()
 {
 	PhysicsWorld::GetInstance()->ContactTest(S_Enemy.M_EnemyController, [&](const btCollisionObject& contactObject)
 	{
-		if (S_Bullet.P_Bullet->BulletIsSelf(contactObject))
+		for (int i = 0 ;P_Bullet[i] != nullptr;i++)
 		{
-			EnemyDamage();
-			S_Bullet.P_Bullet->BulletDead();
+			if (P_Bullet[i]->BulletIsSelf(contactObject))
+			{
+				EnemyDamage();
+				P_Bullet[i]->BulletDead();
+				break;
+			}
+		}
+	});
+}
+void Enemy::EnemyToPlayer()
+{
+	PhysicsWorld::GetInstance()->ContactTest(S_Enemy.M_EnemyController, [&](const btCollisionObject& contactObject)
+	{
+		if (S_Player.P_Player->PlayerIsSelf(contactObject))
+		{
+			S_Player.P_Player->PlayerDamage(1);
 		}
 	});
 }

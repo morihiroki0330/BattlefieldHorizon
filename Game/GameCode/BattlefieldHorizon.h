@@ -1,5 +1,6 @@
 #pragma once
 //ステージは19000.0f*19000.0f
+//探知機は1500.0f*1500.0f
 #include "DimensionalStorage/StructStorage.h"
 class BattlefieldHorizon : public IGameObject
 {
@@ -35,5 +36,7 @@ private:
 
 	int M_Wave = 1;
 	int M_Score = 0;
+
+	std::vector<Fade*> PSA;
 };
 

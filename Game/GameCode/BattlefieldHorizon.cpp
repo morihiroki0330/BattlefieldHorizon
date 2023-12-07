@@ -21,6 +21,8 @@ bool BattlefieldHorizon::Start()
 void BattlefieldHorizon::Update()
 {
 	S_Effect.P_Fade = FindGO<Fade>("fade");
+	PSA = FindGOs<Fade>("fade");
+
 	S_Element.P_Collision = FindGO<DimensionalCollision>("collision");
 
 	if (M_ClearFlag)

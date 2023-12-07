@@ -4,7 +4,6 @@
 
 #include "Enemy/Enemy.h"
 #include "Enemy/EnemySpawner.h"
-#include "Enemy/EnemyStatus.h"
 
 #include "Gun/Gun.h"
 #include "Gun/GunSight.h"
@@ -20,4 +19,3 @@
 #include "Object/TileMap.h"
 
 #include "Player/Player.h"
-#include "Player/PlayerStatus.h"

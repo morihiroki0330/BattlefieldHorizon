@@ -1,4 +1,5 @@
 #pragma once
+/*此処からクラスのポインタ*/
 class BattlefieldHorizon;
 struct ClassGame
 {
@@ -18,21 +19,17 @@ struct ClassInterface
 };
 
 class Enemy;
-class EnemyStatus;
 class EnemySpawner;
 struct ClassEnemy
 {
 	Enemy* P_Enemy               = nullptr;
-	EnemyStatus* P_EnemyStatus   = nullptr;
 	EnemySpawner* P_EnemySpawner = nullptr;
 };
 
 class Player;
-class PlayerStatus;
 struct ClassPlayer
 {
 	Player* P_Player             = nullptr;
-	PlayerStatus* P_PlayerStatus = nullptr;
 };
 
 class TileMap;
@@ -77,6 +74,8 @@ struct ClassOperation
 	Controller* P_Controller = nullptr;
 };
 
+/*此処からクラスのデータ*/
+
 //ゲームタイトル
 struct DataGameTitleGraphics
 {
@@ -115,9 +114,9 @@ struct DataGameResultButton
 	SpriteRender M_ResultButton;
 };
 
-
 //プレイヤー
-struct DataPlayerModel
+#include "physics/PhysicsGhostObject.h"
+struct DataPlayer
 {
 	ModelRender M_PlayerModel;
 
@@ -127,10 +126,13 @@ struct DataPlayerModel
 	Vector3 M_PlayerRight    = { 0.0f , 0.0f   , 0.0f };
 
 	CharacterController M_PlayerController;
-};
-struct DataPlayerStatus
-{
+	PhysicsGhostObject M_PlayerGhost;
 
+	int M_PlayerHp = 100;
+	
+	bool M_CoolDownFlag = false;
+	int M_CoolDownTime = 0;
+	int M_CoolDownTimeFixed = 10;
 };
 
 //ゲームカメラ
@@ -157,9 +159,10 @@ struct DataBullet
 	Vector3 M_BulletPosition = { 0.0f , 0.0f , 0.0f };
 	Vector3 M_BulletSpeed    = { 0.0f , 0.0f , 0.0f };
 
-	float M_BuleetSpeedMagniFication = 50000.0f;
+	float M_BuleetSpeedMagniFication = 100000.0f;
 
 	int DeadTime = 0;
+	int DeadTimeMax = 60;
 };
 
 //銃
@@ -168,7 +171,7 @@ struct DataGun
 	bool M_CoolDownFlag = false;
 
 	int M_CoolDownTime = 0;
-	int M_CoolDownTimeFixed = 30;
+	int M_CoolDownTimeFixed = 15;
 	int M_BulletCount = 60;
 	int M_BulletMaxCount = 60;
 };
@@ -205,7 +208,7 @@ struct DataEnemy
 
 	CharacterController M_EnemyController;
 
-	int M_EnemyHp  = 2;
+	int M_EnemyHp  = 1;
 	int M_EnemyScore = 500;
 	int M_CoolTime = 0;
 
@@ -217,6 +220,8 @@ struct DataUi
 	Vector4 BulletIn  = { 1.0f , 1.0f , 1.0f , 1.0f };
 	Vector4 BulletOut = { 0.8f , 0.0f , 0.0f , 1.0f };
 	int BulletCount;
+	int BulletCount10;
+	int BulletCount1;
 	int BulletCountMemory;
 
 	int WaveCount;
@@ -238,6 +243,9 @@ struct DataUi
 	int ScoreCount100;
 	int ScoreCount10;
 	int ScoreCount1;
+
+	int PlayerHp;
+	int PlayerHpMemory;
 };
 struct DataUiTexture
 {
@@ -265,7 +273,8 @@ struct DataUiTexture
 	{
 		CanvasTexture.Init("Assets/Sprite/Ui/Canvas.DDS", 1920.0f, 1080.0f, true);
 
-		PlayerHpFrameTexture.Init("Assets/Sprite/Ui/HpFrame.DDS", 300.0f, 100.0f, true);
+		PlayerHpTexture.Init("Assets/Sprite/Ui/Hp/Hp.DDS", 280.0f, 80.0f, true);
+		PlayerHpFrameTexture.Init("Assets/Sprite/Ui/Hp/HpFrame.DDS", 300.0f, 100.0f, true);
 
 		BulletCountTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
 		BulletCountTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
@@ -295,6 +304,7 @@ struct DataUiTexture
 	{
 		CanvasTexture.Update();
 
+		PlayerHpTexture.Update();
 		PlayerHpFrameTexture.Update();
 
 		EnemyCountTexture[0].Update();
@@ -325,6 +335,7 @@ struct DataUiTexture
 	{
 		CanvasTexture.Draw(rc);
 
+		PlayerHpTexture.Draw(rc);
 		PlayerHpFrameTexture.Draw(rc);
 		
 		BulletCountTexture[0].Draw(rc);
@@ -351,24 +362,4 @@ struct DataUiTexture
 		ScoreCountTexture[7].Draw(rc);
 		ScoreTexture.Draw(rc);
 	}
-};
-struct DataUiPosition
-{
-	Vector3 CanvasPosition;
-
-	Vector3 PlayerHpFramePosition;
-
-	Vector3 EnemyCountPosition[3];
-	Vector3 EnemyIconPosition;
-
-	Vector3 WavePosition;
-	Vector3 WaveFramePosition;
-
-	Vector3 BulletCountPosition[2];
-	Vector3 GunFramePosition;
-
-	Vector3 MiniMapFramePosition;
-
-	Vector3 ScoreCountPosition[8];
-	Vector3 ScorePosition;
 };

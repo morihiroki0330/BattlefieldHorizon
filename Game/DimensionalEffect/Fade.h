@@ -15,6 +15,8 @@ public:
 
 	const bool IsFade() const
 	{return M_State != ENSTATE_IDLE;}
+
+	int a = 1;
 private:
 	SpriteRender M_FadeTexture;
 	Vector4 M_ButtonCollar = { 1.0f, 1.0f, 1.0f, 1.0f };

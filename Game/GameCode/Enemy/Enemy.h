@@ -14,6 +14,7 @@ public:
 	void EnemyDead();
 
 	void EnemyHit();
+	void EnemyToPlayer();
 	void EnemyDamage();
 	void EnemyCoolTime();
 
@@ -23,10 +24,7 @@ private:
 
 	ClassGame S_Game;
 	ClassPlayer S_Player;
-	ClassGun S_Bullet;
+	std::vector<Bullet*> P_Bullet;
 	ClassEnemy S_EnemySpawner;
-	/*Player* P_Player = nullptr;
-	Bullet* P_Bullet = nullptr;
-	EnemySpawner* P_EnemySpawner = nullptr;*/
 };
 

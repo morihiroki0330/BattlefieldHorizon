@@ -15,6 +15,10 @@ Game::Game()
 	S_Element.P_Collision  = NewGO<DimensionalCollision>(0, "collision");
 
 	S_Effect.P_Fade       = NewGO<Fade>(3, "fade");
+	S_Effect.P_Fade->a = 2;
+	S_Effect.P_Fade       = NewGO<Fade>(3, "fade");
+	S_Effect.P_Fade->a = 45;
+
 
 	S_Interface.P_Sound      = NewGO<Sound>(0, "sound");
 	

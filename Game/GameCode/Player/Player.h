@@ -11,16 +11,26 @@ public:
 
 	void PlayerMove();
 	void PlayerFall();
+	void PlayerDamage(int Damage);
 
 	void InitValue();
+
+	int GetPlayerHp()
+	{return S_Player.M_PlayerHp;}
+
+	bool PlayerIsSelf(const btCollisionObject& contactObject)
+	{return S_Player.M_PlayerGhost.IsSelf(contactObject);}
 
 	const Vector3& GetPosition()
 	{return S_Player.M_PlayerPosition;}
 private:
-	DataPlayerModel S_Player;
+	DataPlayer S_Player;
 
 	ClassOperation S_Operation;
 	ClassObject S_Object;
 	ClassGun S_Gun;
-};
+
+	FontRender a;
+	wchar_t b[256];
+}; 
 

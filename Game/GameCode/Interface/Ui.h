@@ -1,15 +1,15 @@
 #pragma once
 /*
 UIに表示するステータス
-・プレイヤーのHP
+・プレイヤーのHP〇
 ・銃弾の弾薬〇
 ・銃の種類〇
 ・銃の標準〇
 ・スコアボード〇
-・ミニマップ〇
-・タイム〇
+・ミニマップ
+・タイム
 ・現在のウェーブ〇
-・残りエネミー数
+・残りエネミー数〇
 ・背景〇
 */
 #include "DimensionalStorage/StructStorage.h"
@@ -25,10 +25,11 @@ public:
 	void BulletCount();
 	void EnemyCount();
 	void ScoreCount();
+	void PlayerHp();
+	void MiniMap();
 private:
 	DataUi S_Ui;
 	DataUiTexture S_UiTexture;
-	DataUiPosition S_UiPosition;
 	
 	ClassGame S_Game;
 	ClassGun S_Gun;

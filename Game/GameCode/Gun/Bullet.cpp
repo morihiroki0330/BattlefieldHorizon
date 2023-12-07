@@ -24,7 +24,7 @@ bool Bullet::Start()
 void Bullet::Update()
 {
 	S_Bullet.DeadTime++;
-	if (S_Bullet.DeadTime >= 29)
+	if (S_Bullet.DeadTime >= S_Bullet.DeadTimeMax)
 	{BulletDead();}
 
 	Move();

@@ -1,4 +1,4 @@
-21
+29
 6,Canvas,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Ui/Canvas.png,0.0,1.1368683772161603e-13,1920,1080,1,1.0,1.0,0.5,0.5,10,Canvas.dds
 7,MiniMap,64,../../../../BattlefieldHorizon/Game/Assets/Sprite/Ui/MiniMap.png,810.0,390.0,300,300,10,1.0,1.0,0.5,0.5,11,MiniMap.dds
 8,GunFrame,65,../../../../BattlefieldHorizon/Game/Assets/Sprite/Ui/GunFrame.png,750.0,-465.0,300,100,10,1.0,1.0,0.5,0.5,12,GunFrame.dds
@@ -6,7 +6,6 @@
 9,EnemyIcon,71,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/EnemyIcon.png,-450.00000000000006,500.0,150,75,10,1.0,1.0,0.5,0.5,13,EnemyIcon.dds
 9,WaveFrame,71,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/WaveFrame.png,-750.0,465.0,300,100,10,1.0,1.0,0.5,0.5,13,WaveFrame.dds
 4,Wave,66,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/Wave.png,-770.0,465.0,250,80,10,1.0,1.0,0.5,0.5,8,Wave.dds
-13,BulletCount10,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,670.0,-479.9999999999999,50,50,10,0.5,0.5,0.5,0.5,5,0.dds
 12,BulletCount1,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,700.0,-479.9999999999999,50,50,10,0.5,0.5,0.5,0.5,5,0.dds
 13,EnemyCount100,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,-350.0,500.0,80,80,10,0.8,0.8,0.5,0.5,5,0.dds
 12,EnemyCount10,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,-310.0,500.0,80,80,10,0.8,0.8,0.5,0.5,5,0.dds
@@ -20,3 +19,12 @@
 13,ScoreCount100,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,200.0,-500.0,80,80,10,0.8,0.8,0.5,0.5,5,0.dds
 12,ScoreCount10,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,240.0,-500.0,80,80,10,0.8,0.8,0.5,0.5,5,0.dds
 11,ScoreCount1,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,280.0,-500.0,80,80,10,0.8,0.8,0.5,0.5,5,0.dds
+2,Hp,59,../../../../BattlefieldHorizon/Game/Assets/Sprite/Ui/Hp.png,-750.0,-465.0,280,80,10,1.0,1.0,0.5,0.5,6,Hp.dds
+6,Time10,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,20.0,410.0000000000001,50,50,10,0.5,0.5,0.5,0.5,5,0.dds
+7,Time100,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,-20.0,410.0000000000001,50,50,10,0.5,0.5,0.5,0.5,5,0.dds
+8,Time1000,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,-50.0,410.0000000000001,50,50,10,0.5,0.5,0.5,0.5,5,0.dds
+5,Time1,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,50.0,410.0000000000001,50,50,10,0.5,0.5,0.5,0.5,5,0.dds
+10,ScoreCount,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,0.0,-500.0,80,80,10,0.8,0.8,0.5,0.5,5,0.dds
+10,EnemyCount,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,-350.0,500.0,80,80,10,0.8,0.8,0.5,0.5,5,0.dds
+11,BulletCount,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,670.0,-479.9999999999999,50,50,10,0.5,0.5,0.5,0.5,5,0.dds
+13,BulletCount10,63,../../../../BattlefieldHorizon/Game/Assets/Sprite/Level2D/0.png,670.0,-479.9999999999999,50,50,10,0.5,0.5,0.5,0.5,5,0.dds

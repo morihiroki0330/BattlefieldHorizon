@@ -9,148 +9,90 @@ bool Ui::Start()
 	{
 		if (objData.EqualObjectName("Canvas") == true)
 		{
-			S_UiPosition.CanvasPosition = objData.position;
-			S_UiTexture.CanvasTexture.SetPosition(S_UiPosition.CanvasPosition);
+			S_UiTexture.CanvasTexture.SetPosition(objData.position);
 			return true;
-		}else {
-			if (objData.EqualObjectName("GunFrame") == true)
-			{
-				S_UiPosition.GunFramePosition = objData.position;
-				S_UiTexture.GunFrameTexture.SetPosition(S_UiPosition.GunFramePosition);
-				return true;
-			}else {
-				if (objData.EqualObjectName("HpFrame") == true)
-				{
-					S_UiPosition.PlayerHpFramePosition = objData.position;
-					S_UiTexture.PlayerHpFrameTexture.SetPosition(S_UiPosition.PlayerHpFramePosition);
-					return true;
-				}else {
-					if (objData.EqualObjectName("WaveFrame") == true)
-					{
-						S_UiPosition.WaveFramePosition = objData.position;
-						S_UiTexture.WaveFrameTexture.SetPosition(S_UiPosition.WaveFramePosition);
-						return true;
-					}else {
-						if (objData.EqualObjectName("Wave") == true)
-						{
-							S_UiPosition.WavePosition = objData.position;
-							S_UiTexture.WaveTexture.SetPosition(S_UiPosition.WavePosition);
-							return true;
-						}else {
-							if (objData.EqualObjectName("MiniMap") == true)
-							{
-								S_UiPosition.MiniMapFramePosition = objData.position;
-								S_UiTexture.MiniMapFrameTexture.SetPosition(S_UiPosition.MiniMapFramePosition);
-								return true;
-							}else {
-								if (objData.EqualObjectName("EnemyIcon") == true)
-								{
-									S_UiPosition.EnemyIconPosition = objData.position;
-									S_UiTexture.EnemyIconTexture.SetPosition(S_UiPosition.EnemyIconPosition);
-									return true;
-								}else {
-									if (objData.EqualObjectName("Score") == true)
-									{
-										S_UiPosition.ScorePosition = objData.position;
-										S_UiTexture.ScoreTexture.SetPosition(S_UiPosition.ScorePosition);
-										return true;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
 		}
+			
+				
+					
+						
+	if (objData.EqualObjectName("MiniMap") == true)
+	{
+		S_UiTexture.MiniMapFrameTexture.SetPosition(objData.position);
+		return true;
+	}
 
-		if (objData.EqualObjectName("BulletCount10") == true)
-		{
-			S_UiPosition.BulletCountPosition[0] = objData.position;
-			S_UiTexture.BulletCountTexture[0].SetPosition(S_UiPosition.BulletCountPosition[0]);
-			return true;
-		}else {
-			if (objData.EqualObjectName("BulletCount1") == true)
-			{
-				S_UiPosition.BulletCountPosition[1] = objData.position;
-				S_UiTexture.BulletCountTexture[1].SetPosition(S_UiPosition.BulletCountPosition[1]);
-				return true;
-			}else {
-				if (objData.EqualObjectName("EnemyCount100") == true)
-				{
-					S_UiPosition.EnemyCountPosition[0] = objData.position;
-					S_UiTexture.EnemyCountTexture[0].SetPosition(S_UiPosition.EnemyCountPosition[0]);
-				}else {
-					if (objData.EqualObjectName("EnemyCount10") == true)
-					{
-						S_UiPosition.EnemyCountPosition[1] = objData.position;
-						S_UiTexture.EnemyCountTexture[1].SetPosition(S_UiPosition.EnemyCountPosition[1]);
-					}else {
-						if (objData.EqualObjectName("EnemyCount1") == true)
-						{
-							S_UiPosition.EnemyCountPosition[2] = objData.position;
-							S_UiTexture.EnemyCountTexture[2].SetPosition(S_UiPosition.EnemyCountPosition[2]);
-						}
-					}
-				}
-			}
-		}
+	if (objData.EqualObjectName("WaveFrame") == true)
+	{
+		S_UiTexture.WaveFrameTexture.SetPosition(objData.position);
+		return true;
+	}
+	if (objData.EqualObjectName("HpFrame") == true)
+	{
+		S_UiTexture.PlayerHpFrameTexture.SetPosition(objData.position);
+		return true;
+	}
+	if (objData.EqualObjectName("GunFrame") == true)
+	{
+		S_UiTexture.GunFrameTexture.SetPosition(objData.position);
+		return true;
+	}
+	if (objData.EqualObjectName("EnemyIcon") == true)
+	{
+		S_UiTexture.EnemyIconTexture.SetPosition(objData.position);
+		return true;
+	}
+	if (objData.EqualObjectName("Score") == true)
+	{
+		S_UiTexture.ScoreTexture.SetPosition(objData.position);
+		return true;
+	}
+							
 
-		if (objData.EqualObjectName("ScoreCount10000000") == true)
+	if (objData.EqualObjectName("Wave") == true)
+	{
+		S_UiTexture.WaveTexture.SetPosition(objData.position);
+		return true;
+	}
+	if (objData.EqualObjectName("Hp") == true)
+	{
+		S_UiTexture.PlayerHpTexture.SetPosition(objData.position);
+		return true;
+	}
+	if (objData.EqualObjectName("BulletCount") == true)
+	{
+		for (int i = 0; i < sizeof(S_UiTexture.BulletCountTexture) / sizeof(S_UiTexture.BulletCountTexture[0]); i++)
 		{
-			S_UiPosition.ScoreCountPosition[0] = objData.position;
-			S_UiTexture.ScoreCountTexture[0].SetPosition(S_UiPosition.ScoreCountPosition[0]);
-			return true;
-		}else {
-			if (objData.EqualObjectName("ScoreCount1000000") == true)
-			{
-				S_UiPosition.ScoreCountPosition[1] = objData.position;
-				S_UiTexture.ScoreCountTexture[1].SetPosition(S_UiPosition.ScoreCountPosition[1]);
-				return true;
-			}else {
-				if (objData.EqualObjectName("ScoreCount100000") == true)
-				{
-					S_UiPosition.ScoreCountPosition[2] = objData.position;
-					S_UiTexture.ScoreCountTexture[2].SetPosition(S_UiPosition.ScoreCountPosition[2]);
-				}else {
-					if (objData.EqualObjectName("ScoreCount10000") == true)
-					{
-						S_UiPosition.ScoreCountPosition[3] = objData.position;
-						S_UiTexture.ScoreCountTexture[3].SetPosition(S_UiPosition.ScoreCountPosition[3]);
-					}else {
-						if (objData.EqualObjectName("ScoreCount1000") == true)
-						{
-							S_UiPosition.ScoreCountPosition[4] = objData.position;
-							S_UiTexture.ScoreCountTexture[4].SetPosition(S_UiPosition.ScoreCountPosition[4]);
-						}else {
-							if (objData.EqualObjectName("ScoreCount100") == true)
-							{
-								S_UiPosition.ScoreCountPosition[5] = objData.position;
-								S_UiTexture.ScoreCountTexture[5].SetPosition(S_UiPosition.ScoreCountPosition[5]);
-							}else {
-								if (objData.EqualObjectName("ScoreCount10") == true)
-								{
-									S_UiPosition.ScoreCountPosition[6] = objData.position;
-									S_UiTexture.ScoreCountTexture[6].SetPosition(S_UiPosition.ScoreCountPosition[6]);
-								}else {
-									if (objData.EqualObjectName("ScoreCount1") == true)
-									{
-										S_UiPosition.ScoreCountPosition[7] = objData.position;
-										S_UiTexture.ScoreCountTexture[7].SetPosition(S_UiPosition.ScoreCountPosition[7]);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			S_UiTexture.BulletCountTexture[i].SetPosition(objData.position);
+			objData.position.x += 30.0f;
 		}
+		return true;
+	}
+	if (objData.EqualObjectName("EnemyCount") == true)
+	{
+		for (int i = 0; i < sizeof(S_UiTexture.EnemyCountTexture) / sizeof(S_UiTexture.EnemyCountTexture[0]); i++)
+		{
+			S_UiTexture.EnemyCountTexture[i].SetPosition(objData.position);
+			objData.position.x += 40.0f;
+		}
+		return true;
+	}
+	if (objData.EqualObjectName("ScoreCount") == true)
+	{
+		for (int i = 0;i < sizeof(S_UiTexture.ScoreCountTexture) / sizeof(S_UiTexture.ScoreCountTexture[0]); i++)
+		{
+			S_UiTexture.ScoreCountTexture[i].SetPosition(objData.position);
+			objData.position.x += 40.0f;
+		}		
+		return true;
+	}						
 		return false;
 	});
 
 	S_Game.P_Horizon = FindGO<BattlefieldHorizon>("horizon");
 	S_Gun.P_Gun = FindGO<Gun>("gun");
 	S_Enemy.P_EnemySpawner = FindGO<EnemySpawner>("enemyspawner");
-	S_Game.P_Horizon = FindGO<BattlefieldHorizon>("horizon");
+	S_Player.P_Player = FindGO<Player>("player");
 	return true;
 }
 void Ui::Update()
@@ -159,7 +101,7 @@ void Ui::Update()
 	BulletCount();
 	EnemyCount();
 	ScoreCount();
-
+	PlayerHp();
 	S_UiTexture.TextureUpdate();
 }
 void Ui::Render(RenderContext& rc)
@@ -192,73 +134,58 @@ void Ui::BulletCount()
 	S_Ui.BulletCount = S_Gun.P_Gun->GetBulletCount();
 	if (S_Ui.BulletCount != S_Ui.BulletCountMemory)
 	{
-		switch (S_Ui.BulletCount / 10)
-		{
-		case 0:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/0.DDS");
-			break;
-		case 1:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/1.DDS");
-			break;
-		case 2:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/2.DDS");
-			break;
-		case 3:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/3.DDS");
-			break;
-		case 4:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/4.DDS");
-			break;
-		case 5:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/5.DDS");
-			break;
-		case 6:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/6.DDS");
-			break;
-		case 7:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/7.DDS");
-			break;
-		case 8:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/8.DDS");
-			break;
-		case 9:
-			S_UiTexture.BulletCountTexture[0].TextureSet("Assets/Sprite/Ui/Count/9.DDS");
-			break;
-		}
+		int Count = 0;
+		int BulletCount = 0;
 
+		S_Ui.BulletCount10 = (S_Ui.BulletCount / 10) % 10;
+		S_Ui.BulletCount1 = (S_Ui.BulletCount % 10);
 
-		switch (S_Gun.P_Gun->GetBulletCount() - ((S_Ui.BulletCount / 10) * 10))
+		for (int i = 10; i != 1 / 10; i /= 10)
 		{
-		case 0:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/0.DDS");
-			break;
-		case 1:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/1.DDS");
-			break;
-		case 2:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/2.DDS");
-			break;
-		case 3:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/3.DDS");
-			break;
-		case 4:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/4.DDS");
-			break;
-		case 5:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/5.DDS");
-			break;
-		case 6:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/6.DDS");
-			break;
-		case 7:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/7.DDS");
-			break;
-		case 8:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/8.DDS");
-			break;
-		case 9:
-			S_UiTexture.BulletCountTexture[1].TextureSet("Assets/Sprite/Ui/Count/9.DDS");
-			break;
+			switch (i)
+			{
+			case 1:
+				BulletCount = S_Ui.BulletCount1;
+				break;
+			case 10:
+				BulletCount = S_Ui.BulletCount10;
+				break;
+			}
+
+			switch (BulletCount)
+			{
+			case 0:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/0.DDS");
+				break;
+			case 1:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/1.DDS");
+				break;
+			case 2:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/2.DDS");
+				break;
+			case 3:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/3.DDS");
+				break;
+			case 4:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/4.DDS");
+				break;
+			case 5:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/5.DDS");
+				break;
+			case 6:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/6.DDS");
+				break;
+			case 7:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/7.DDS");
+				break;
+			case 8:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/8.DDS");
+				break;
+			case 9:
+				S_UiTexture.BulletCountTexture[Count].TextureSet("Assets/Sprite/Ui/Count/9.DDS");
+				break;
+			}
+			Count++;
 		}
 	}
 
@@ -424,4 +351,26 @@ void Ui::ScoreCount()
 		}
 	}
 	S_Ui.ScoreCountMemory = S_Ui.ScoreCount;
+}
+void Ui::PlayerHp()
+{
+	S_Ui.PlayerHp = S_Player.P_Player->GetPlayerHp();
+	if (S_Ui.PlayerHp != S_Ui.PlayerHpMemory)
+	{
+		if (S_Ui.PlayerHp >= 0.66 * 100)
+		{
+			S_UiTexture.PlayerHpTexture.SetMulColor({ 0.0f,1.0f,0.0f,1.0f });//óŒ
+		}else {
+			if (S_Ui.PlayerHp >= 0.33 * 100)
+			{
+				S_UiTexture.PlayerHpTexture.SetMulColor({ 1.0f,1.0f,0.0f,1.0f });//â©
+			}else {
+				if (S_Ui.PlayerHp >= 0.0 * 100)
+				{
+					S_UiTexture.PlayerHpTexture.SetMulColor({ 1.0f,0.0f,0.0f,1.0f });//ê‘
+				}
+			}
+		}
+	}
+	S_Ui.PlayerHpMemory = S_Ui.PlayerHp;
 }
