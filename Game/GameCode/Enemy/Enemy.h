@@ -19,6 +19,8 @@ public:
 	void EnemyCoolTime();
 
 	void InitValue();
+	Vector3 GetPosition()
+	{return S_Enemy.M_EnemyPosition;}
 private:
 	DataEnemy S_Enemy;
 

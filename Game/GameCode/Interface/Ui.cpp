@@ -13,13 +13,15 @@ bool Ui::Start()
 			return true;
 		}
 			
-				
-					
-						
 	if (objData.EqualObjectName("MiniMap") == true)
 	{
 		S_UiTexture.MiniMapFrameTexture.SetPosition(objData.position);
 		return true;
+	}
+	if (objData.EqualObjectName("MiniMapPlayer") == true)
+	{
+		S_UiTexture.MiniMapPlayerTexture.SetPosition(objData.position);
+		return false;
 	}
 
 	if (objData.EqualObjectName("WaveFrame") == true)
@@ -93,6 +95,8 @@ bool Ui::Start()
 	S_Gun.P_Gun = FindGO<Gun>("gun");
 	S_Enemy.P_EnemySpawner = FindGO<EnemySpawner>("enemyspawner");
 	S_Player.P_Player = FindGO<Player>("player");
+
+	P_Enemy = FindGOs<Enemy>("enemy");
 	return true;
 }
 void Ui::Update()
@@ -102,6 +106,7 @@ void Ui::Update()
 	EnemyCount();
 	ScoreCount();
 	PlayerHp();
+	MiniMap();
 	S_UiTexture.TextureUpdate();
 }
 void Ui::Render(RenderContext& rc)
@@ -373,4 +378,9 @@ void Ui::PlayerHp()
 		}
 	}
 	S_Ui.PlayerHpMemory = S_Ui.PlayerHp;
+}
+void Ui::MiniMap()
+{
+	Vector3 Pos = { ((-S_Player.P_Player->GetPosition().x / 10) + (P_Enemy[0]->GetPosition().x / 10)) + 770.0f , ((-S_Player.P_Player->GetPosition().z / 10) + (P_Enemy[0]->GetPosition().z / 10)) + 350.0f , 0.0f };
+	S_UiTexture.MiniMapEnemyTexture.SetPosition(Pos);
 }

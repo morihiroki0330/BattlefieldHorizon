@@ -1,6 +1,7 @@
 #pragma once
-//ステージは19000.0f*19000.0f
-//探知機は1500.0f*1500.0f
+//ステージは38000.0f*38000.0f
+//探知機は3000.0f*3000.0f
+//探知機のアスペクトは380f*380f
 #include "DimensionalStorage/StructStorage.h"
 class BattlefieldHorizon : public IGameObject
 {

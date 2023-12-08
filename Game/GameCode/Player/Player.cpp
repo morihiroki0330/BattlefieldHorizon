@@ -32,10 +32,7 @@ void Player::Update()
 	S_Player.M_PlayerModel.SetPosition(S_Player.M_PlayerPosition);
 	S_Player.M_PlayerModel.Update();
 
-	swprintf_s(b, 256, L"Hp:%d", S_Player.M_PlayerHp);
-	a.SetText(b);
-	a.SetPosition({100.0f,0.0f,0.0f});
-	a.SetScale(1.0f);
+	
 
 	if (S_Player.M_CoolDownFlag)
 	{
@@ -50,7 +47,6 @@ void Player::Update()
 void Player::Render(RenderContext& rc)
 {
 	S_Player.M_PlayerModel.Draw(rc);
-	a.Draw(rc);
 }
 
 void Player::PlayerMove()

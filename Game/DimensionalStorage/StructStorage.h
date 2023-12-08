@@ -267,6 +267,8 @@ struct DataUiTexture
 	SpriteRender ScoreTexture;
 
 	SpriteRender MiniMapFrameTexture;
+	SpriteRender MiniMapPlayerTexture;
+	SpriteRender MiniMapEnemyTexture;
 
 	SpriteRender TimeTexture[5];
 	void TextureInit()
@@ -293,7 +295,9 @@ struct DataUiTexture
 		WaveTexture.Init("Assets/Sprite/Ui/Wave/Wave1.DDS", 250.0f, 80.0f, true);
 		WaveFrameTexture.Init("Assets/Sprite/Ui/Wave/WaveFrame.DDS", 300.0f, 100.0f, true);
 
-		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap.DDS", 300.0f, 300.0f, true);
+		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMap.DDS", 380.0f, 380.0f, true);
+		MiniMapPlayerTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapPlayer.DDS", 15.0f, 15.0f, true);
+		MiniMapEnemyTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);
 
 		EnemyCountTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
 		EnemyCountTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
@@ -330,6 +334,8 @@ struct DataUiTexture
 		ScoreTexture.Update();
 
 		MiniMapFrameTexture.Update();
+		MiniMapPlayerTexture.Update();
+		MiniMapEnemyTexture.Update();
 	}
 	void TextureRender(RenderContext& rc)
 	{
@@ -346,6 +352,8 @@ struct DataUiTexture
 		WaveFrameTexture.Draw(rc);
 
 		MiniMapFrameTexture.Draw(rc);
+		MiniMapPlayerTexture.Draw(rc);
+		MiniMapEnemyTexture.Draw(rc);
 
 		EnemyCountTexture[0].Draw(rc);
 		EnemyCountTexture[1].Draw(rc);

@@ -35,6 +35,8 @@ private:
 	ClassGun S_Gun;
 	ClassPlayer S_Player;
 	ClassEnemy S_Enemy;
+	
+	std::vector<Enemy*> P_Enemy;
 
 	Level2DRender Level2D;
 };
