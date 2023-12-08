@@ -36,6 +36,7 @@ void EnemySpawner::Render(RenderContext& rc)
 
 void EnemySpawner::EnemyCreate()
 {
+	srand((unsigned int)time(NULL));
 	for (int Level = 0; Level < S_Spawner.M_Level; Level++)
 	{
 		for (int EnemyCount = 0; EnemyCount < S_Spawner.M_EnemyCountMax; EnemyCount++)

@@ -190,7 +190,7 @@ struct DataEnemySpawner
 	Vector3 M_EnemySetPosition = { 0.0f,500.0f,0.0f };
 
 	int M_EnemyCount = 0;
-	int M_EnemyCountMax = 100;
+	int M_EnemyCountMax = 1;
 	int M_Level = 1;
 	bool Flag = true;
 
