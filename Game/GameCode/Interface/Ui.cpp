@@ -49,7 +49,25 @@ bool Ui::Start()
 		S_UiTexture.ScoreTexture.SetPosition(objData.position);
 		return true;
 	}
-							
+		
+	if (objData.EqualObjectName("Minute") == true)
+	{
+		for (int i = 0; i < sizeof(S_UiTexture.MinuteTexture) / sizeof(S_UiTexture.MinuteTexture[0]); i++)
+		{
+			S_UiTexture.MinuteTexture[i].SetPosition(objData.position);
+			objData.position.x += 30.0f;
+		}
+		return true;
+	}
+	if (objData.EqualObjectName("Second") == true)
+	{
+		for (int i = 0; i < sizeof(S_UiTexture.SecondTexture) / sizeof(S_UiTexture.SecondTexture[0]); i++)
+		{
+			S_UiTexture.SecondTexture[i].SetPosition(objData.position);
+			objData.position.x += 30.0f;
+		}
+		return true;
+	}
 
 	if (objData.EqualObjectName("Wave") == true)
 	{
@@ -106,6 +124,7 @@ void Ui::Update()
 	ScoreCount();
 	PlayerHp();
 	MiniMap();
+	Time();
 	S_UiTexture.TextureUpdate();
 }
 void Ui::Render(RenderContext& rc)
@@ -395,5 +414,19 @@ void Ui::MiniMap()
 	{
 		Vector3 Pos = { ((-S_Player.P_Player->GetPosition().x / 10) + (P_Enemy[i]->GetPosition().x / 10)) + 770.0f , ((-S_Player.P_Player->GetPosition().z / 10) + (P_Enemy[i]->GetPosition().z / 10)) + 350.0f , 0.0f };
 		S_UiTexture.MiniMapEnemyTexture[i].SetPosition(Pos);
+	}
+}
+void Ui::Time()
+{
+	S_Ui.Comma++;
+	if (S_Ui.Comma >= 60)
+	{
+		S_Ui.Second++;
+		S_Ui.Comma = 0;
+	}
+	if (S_Ui.Second >= 60)
+	{
+		S_Ui.Minute++;
+		S_Ui.Second = 0;
 	}
 }

@@ -246,6 +246,10 @@ struct DataUi
 
 	int PlayerHp;
 	int PlayerHpMemory;
+
+	int Second;
+	int Minute;
+	int Comma;
 };
 struct DataUiTexture
 {
@@ -270,7 +274,8 @@ struct DataUiTexture
 	SpriteRender MiniMapPlayerTexture;
 	SpriteRender MiniMapEnemyTexture[2];
 
-	SpriteRender TimeTexture[5];
+	SpriteRender MinuteTexture[2];
+	SpriteRender SecondTexture[2];
 	void TextureInit()
 	{
 		CanvasTexture.Init("Assets/Sprite/Ui/Canvas.DDS", 1920.0f, 1080.0f, true);
@@ -304,6 +309,11 @@ struct DataUiTexture
 		EnemyCountTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
 		EnemyCountTexture[2].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
 		EnemyIconTexture.Init("Assets/Sprite/Ui/EnemyCounter/EnemyIcon.DDS", 150.0f, 75.0f, true);
+
+		MinuteTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
+		MinuteTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
+		SecondTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
+		SecondTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
 	}
 	void TextureUpdate()
 	{
@@ -338,6 +348,11 @@ struct DataUiTexture
 		MiniMapPlayerTexture.Update();
 		MiniMapEnemyTexture[0].Update();
 		MiniMapEnemyTexture[1].Update();
+
+		MinuteTexture[0].Update();
+		MinuteTexture[1].Update();
+		SecondTexture[0].Update();
+		SecondTexture[1].Update();
 	}
 	void TextureRender(RenderContext& rc)
 	{
@@ -371,5 +386,10 @@ struct DataUiTexture
 		ScoreCountTexture[6].Draw(rc);
 		ScoreCountTexture[7].Draw(rc);
 		ScoreTexture.Draw(rc);
+
+		MinuteTexture[0].Draw(rc);
+		MinuteTexture[1].Draw(rc);
+		SecondTexture[0].Draw(rc);
+		SecondTexture[1].Draw(rc);
 	}
 };

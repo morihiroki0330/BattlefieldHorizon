@@ -26,6 +26,7 @@ public:
 	void EnemyCount();
 	void ScoreCount();
 	void PlayerHp();
+	void Time();
 	void MiniMap();
 private:
 	DataUi S_Ui;
