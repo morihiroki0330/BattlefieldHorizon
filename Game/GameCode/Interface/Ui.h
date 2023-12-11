@@ -39,5 +39,10 @@ private:
 	std::vector<Enemy*> P_Enemy;
 
 	Level2DRender Level2D;
+
+	int Count = 0;
+	int Size = 0;
+	int SizeX = 0;
+	int SizeY = 0;
 };
 

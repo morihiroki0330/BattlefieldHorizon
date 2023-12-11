@@ -190,7 +190,7 @@ struct DataEnemySpawner
 	Vector3 M_EnemySetPosition = { 0.0f,500.0f,0.0f };
 
 	int M_EnemyCount = 0;
-	int M_EnemyCountMax = 1;
+	int M_EnemyCountMax = 2;
 	int M_Level = 1;
 	bool Flag = true;
 
@@ -268,7 +268,7 @@ struct DataUiTexture
 
 	SpriteRender MiniMapFrameTexture;
 	SpriteRender MiniMapPlayerTexture;
-	SpriteRender MiniMapEnemyTexture;
+	SpriteRender MiniMapEnemyTexture[2];
 
 	SpriteRender TimeTexture[5];
 	void TextureInit()
@@ -297,7 +297,8 @@ struct DataUiTexture
 
 		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMap.DDS", 380.0f, 380.0f, true);
 		MiniMapPlayerTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapPlayer.DDS", 15.0f, 15.0f, true);
-		MiniMapEnemyTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);
+		MiniMapEnemyTexture[0].Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);
+		MiniMapEnemyTexture[1].Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);
 
 		EnemyCountTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
 		EnemyCountTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
@@ -335,7 +336,8 @@ struct DataUiTexture
 
 		MiniMapFrameTexture.Update();
 		MiniMapPlayerTexture.Update();
-		MiniMapEnemyTexture.Update();
+		MiniMapEnemyTexture[0].Update();
+		MiniMapEnemyTexture[1].Update();
 	}
 	void TextureRender(RenderContext& rc)
 	{
@@ -353,7 +355,7 @@ struct DataUiTexture
 
 		MiniMapFrameTexture.Draw(rc);
 		MiniMapPlayerTexture.Draw(rc);
-		MiniMapEnemyTexture.Draw(rc);
+		//MiniMapEnemyTexture.Draw(rc);
 
 		EnemyCountTexture[0].Draw(rc);
 		EnemyCountTexture[1].Draw(rc);

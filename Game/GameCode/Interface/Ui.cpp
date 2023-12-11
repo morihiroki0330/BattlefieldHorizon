@@ -95,12 +95,11 @@ bool Ui::Start()
 	S_Gun.P_Gun = FindGO<Gun>("gun");
 	S_Enemy.P_EnemySpawner = FindGO<EnemySpawner>("enemyspawner");
 	S_Player.P_Player = FindGO<Player>("player");
-
-	P_Enemy = FindGOs<Enemy>("enemy");
 	return true;
 }
 void Ui::Update()
 {
+	P_Enemy = FindGOs<Enemy>("enemy");
 	Wave();
 	BulletCount();
 	EnemyCount();
@@ -112,6 +111,15 @@ void Ui::Update()
 void Ui::Render(RenderContext& rc)
 {
 	S_UiTexture.TextureRender(rc);
+	Size = sizeof(P_Enemy) / sizeof(P_Enemy[0]);
+	Size--;
+	for (int i = 0; i < Size; i++)
+	{
+		Vector3 Posa = { ((-S_Player.P_Player->GetPosition().x / 10) + (P_Enemy[i]->GetPosition().x / 10)) + 770.0f , ((-S_Player.P_Player->GetPosition().z / 10) + (P_Enemy[i]->GetPosition().z / 10)) + 350.0f , 0.0f };
+		if ((abs)(S_UiTexture.MiniMapPlayerTexture.GetPosition().x - Posa.x) < 190.0f && (abs)(S_UiTexture.MiniMapPlayerTexture.GetPosition().y - Posa.y) < 190.0f)
+		{S_UiTexture.MiniMapEnemyTexture[i].Draw(rc); }
+		Count++;
+	}
 }
 
 void Ui::Wave()
@@ -381,6 +389,11 @@ void Ui::PlayerHp()
 }
 void Ui::MiniMap()
 {
-	Vector3 Pos = { ((-S_Player.P_Player->GetPosition().x / 10) + (P_Enemy[0]->GetPosition().x / 10)) + 770.0f , ((-S_Player.P_Player->GetPosition().z / 10) + (P_Enemy[0]->GetPosition().z / 10)) + 350.0f , 0.0f };
-	S_UiTexture.MiniMapEnemyTexture.SetPosition(Pos);
+	Size = sizeof(P_Enemy) / sizeof(P_Enemy[0]);
+	Size--;
+	for (int i = 0; i < Size; i++)
+	{
+		Vector3 Pos = { ((-S_Player.P_Player->GetPosition().x / 10) + (P_Enemy[i]->GetPosition().x / 10)) + 770.0f , ((-S_Player.P_Player->GetPosition().z / 10) + (P_Enemy[i]->GetPosition().z / 10)) + 350.0f , 0.0f };
+		S_UiTexture.MiniMapEnemyTexture[i].SetPosition(Pos);
+	}
 }
