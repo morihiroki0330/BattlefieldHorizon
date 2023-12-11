@@ -51,8 +51,8 @@ void Enemy::EnemyMove()
 	directionZ /= distance;
 
 	// ˆê’è‚Ì‘¬“x‚ÅˆÚ“®
-	S_Enemy.M_EnemySpeed.x = directionX * 400.0f;
-	S_Enemy.M_EnemySpeed.z = directionZ * 400.0f;
+	S_Enemy.M_EnemySpeed.x = directionX * 600.0f;
+	S_Enemy.M_EnemySpeed.z = directionZ * 600.0f;
 }
 void Enemy::EnemyFall()
 {

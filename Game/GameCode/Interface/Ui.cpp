@@ -130,7 +130,12 @@ void Ui::Update()
 	Time();
 	S_Ui.TextureUpdate();
 
-	swprintf_s(M_X, 256, L"Count:%d", Count);
+	if (g_pad[0]->IsTrigger(enButtonB))
+	{
+		ListReset();
+	}
+
+	swprintf_s(M_X, 256, L"Size:%d", P_Enemy.size());
 	FX.SetText(M_X);
 	FX.SetPosition({ 0.0f,200.0f,0.0f });
 	FX.SetScale(1.0f);
@@ -143,7 +148,8 @@ void Ui::Render(RenderContext& rc)
 
 void Ui::ListReset()
 {
-
+	int ad = 5;
+	ad += 15;
 }
 
 void Ui::Wave()

@@ -360,13 +360,6 @@ struct DataUiMiniMap
 	void DrawTexture(RenderContext& rc)
 	{
 		MiniMapFrameTexture.Draw(rc);
-		for (int i = 0; i < sizeof(MiniMapEnemyTexture) / sizeof(MiniMapEnemyTexture[0]); i++)
-		{
-			if (EnemyFlag[i])
-			{
-				MiniMapEnemyTexture[i].Draw(rc);
-			}
-		}
 		MiniMapPlayerTexture.Draw(rc);
 	}
 
