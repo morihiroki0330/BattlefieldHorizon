@@ -30,7 +30,7 @@ private:
 	ClassObject S_Object;
 	ClassGun S_Gun;
 
-	FontRender a;
-	wchar_t b[256];
+	FontRender FX;
+	wchar_t M_X[256];
 }; 
 

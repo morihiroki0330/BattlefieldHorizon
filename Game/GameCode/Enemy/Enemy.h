@@ -21,6 +21,11 @@ public:
 	void InitValue();
 	Vector3 GetPosition()
 	{return S_Enemy.M_EnemyPosition;}
+
+	bool GetFlag()
+	{
+		return S_Enemy.M_CreateFlag;
+	}
 private:
 	DataEnemy S_Enemy;
 

@@ -5,6 +5,7 @@ class GameCamera : public IGameObject
 public:
 	bool Start();
 	void Update();
+	void Render(RenderContext& rc);
 
 	void CameraMove(Vector2 Position);
 	void RightMove(Vector2 Position);
@@ -21,5 +22,8 @@ private:
 	DataCamera S_Camera;
 	
 	ClassPlayer S_Player;
+
+	FontRender FX;
+	wchar_t M_X[256];
 };
 

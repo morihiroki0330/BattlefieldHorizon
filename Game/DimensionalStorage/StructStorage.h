@@ -190,7 +190,7 @@ struct DataEnemySpawner
 	Vector3 M_EnemySetPosition = { 0.0f,500.0f,0.0f };
 
 	int M_EnemyCount = 0;
-	int M_EnemyCountMax = 2;
+	int M_EnemyCountMax = 15;
 	int M_Level = 1;
 	bool Flag = true;
 
@@ -213,183 +213,244 @@ struct DataEnemy
 	int M_CoolTime = 0;
 
 	bool M_CoolFlag = false;
+	bool M_CreateFlag = false;
+};
+
+struct DataUiPlayerHp
+{
+	SpriteRender PlayerHpTexture;
+	SpriteRender PlayerHpFrameTexture;
+	int PlayerHp;
+	int PlayerHpMemory;
+	void InitTexture()
+	{
+		PlayerHpTexture.Init("Assets/Sprite/Ui/Hp/Hp.DDS", 280.0f, 80.0f, true);
+		PlayerHpFrameTexture.Init("Assets/Sprite/Ui/Hp/HpFrame.DDS", 300.0f, 100.0f, true);
+	}
+	void UpdateTexture()
+	{
+		PlayerHpTexture.Update();
+		PlayerHpFrameTexture.Update();
+	}
+	void DrawTexture(RenderContext& rc)
+	{
+		PlayerHpTexture.Draw(rc);
+		PlayerHpFrameTexture.Draw(rc);
+	}
+};
+struct DataUiEnemyCount
+{
+	SpriteRender EnemyCountTexture[3];
+	SpriteRender EnemyIconTexture;
+	int EnemyCount;
+	int EnemyCountMemory;
+	void InitTexture()
+	{
+		for (int i = 0; i < sizeof(EnemyCountTexture) / sizeof(EnemyCountTexture[0]); i++)
+		{EnemyCountTexture[i].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);}
+		EnemyIconTexture.Init("Assets/Sprite/Ui/EnemyCounter/EnemyIcon.DDS", 150.0f, 75.0f, true);
+	}
+	void UpdateTexture()
+	{
+		for (int i = 0; i < sizeof(EnemyCountTexture) / sizeof(EnemyCountTexture[0]); i++)
+		{EnemyCountTexture[i].Update();}
+		EnemyIconTexture.Update();
+	}
+	void DrawTexture(RenderContext& rc)
+	{
+		for (int i = 0; i < sizeof(EnemyCountTexture) / sizeof(EnemyCountTexture[0]); i++)
+		{EnemyCountTexture[i].Draw(rc);}
+		EnemyIconTexture.Draw(rc);
+	}
+};
+struct DataUiGun
+{
+	SpriteRender BulletCountTexture[2];
+	SpriteRender GunFrameTexture;
+	Vector4 BulletIn  = { 1.0f , 1.0f , 1.0f , 1.0f };
+	Vector4 BulletOut = { 0.8f , 0.0f , 0.0f , 1.0f };
+	int BulletCount;
+	int BulletCountMemory;
+	void InitTexture()
+	{
+		for (int i = 0; i < sizeof(BulletCountTexture) / sizeof(BulletCountTexture[0]); i++)
+		{BulletCountTexture[i].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);}
+		GunFrameTexture.Init("Assets/Sprite/Ui/GunFrame.DDS", 300.0f, 100.0f, true);
+	}
+	void UpdateTexture()
+	{
+		for (int i = 0; i < sizeof(BulletCountTexture) / sizeof(BulletCountTexture[0]); i++)
+		{BulletCountTexture[i].Update();}
+		GunFrameTexture.Update();
+	}
+	void DrawTexture(RenderContext& rc)
+	{
+		for (int i = 0; i < sizeof(BulletCountTexture) / sizeof(BulletCountTexture[0]); i++)
+		{BulletCountTexture[i].Draw(rc);}
+		GunFrameTexture.Draw(rc);
+	}
+};
+struct DataUiScore
+{
+	SpriteRender ScoreCountTexture[8];
+	SpriteRender ScoreTexture;
+	int ScoreCount;
+	int ScoreCountMemory;
+	void InitTexture()
+	{
+		for (int i = 0; i < sizeof(ScoreCountTexture) / sizeof(ScoreCountTexture[0]); i++)
+		{ScoreCountTexture[i].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);}
+		ScoreTexture.Init("Assets/Sprite/Ui/Score.DDS", 320.0f, 80.0f, true);
+	}
+	void UpdateTexture()
+	{
+		for (int i = 0; i < sizeof(ScoreCountTexture) / sizeof(ScoreCountTexture[0]); i++)
+		{ScoreCountTexture[i].Update();}
+		ScoreTexture.Update();
+	}
+	void DrawTexture(RenderContext& rc)
+	{
+		for (int i = 0; i < sizeof(ScoreCountTexture) / sizeof(ScoreCountTexture[0]); i++)
+		{ScoreCountTexture[i].Draw(rc);}
+		ScoreTexture.Draw(rc);
+	}
+};
+struct DataUiWave
+{
+	SpriteRender WaveTexture;
+	SpriteRender WaveFrameTexture;
+	int WaveCount;
+	int WaveCountMemory;
+	void InitTexture()
+	{
+		WaveTexture.Init("Assets/Sprite/Ui/Wave/Wave1.DDS", 250.0f, 80.0f, true);
+		WaveFrameTexture.Init("Assets/Sprite/Ui/Wave/WaveFrame.DDS", 300.0f, 100.0f, true);
+	}
+	void UpdateTexture()
+	{
+		WaveTexture.Update();
+		WaveFrameTexture.Update();
+	}
+	void DrawTexture(RenderContext& rc)
+	{
+		WaveTexture.Draw(rc);
+		WaveFrameTexture.Draw(rc);
+	}
+};
+struct DataUiMiniMap
+{
+	SpriteRender MiniMapFrameTexture;
+	SpriteRender MiniMapPlayerTexture;
+	SpriteRender MiniMapEnemyTexture[100];
+	bool EnemyFlag[100];
+	void InitTexture()
+	{
+		for (int i = 0; i < sizeof(MiniMapEnemyTexture) / sizeof(MiniMapEnemyTexture[0]); i++)
+		{MiniMapEnemyTexture[i].Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);}
+		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMap.DDS", 380.0f, 380.0f, true);
+		MiniMapPlayerTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapPlayer.DDS", 15.0f, 15.0f, true);
+	}
+	void UpdateTexture()
+	{
+		for (int i = 0; i < sizeof(MiniMapEnemyTexture) / sizeof(MiniMapEnemyTexture[0]); i++)
+		{MiniMapEnemyTexture[i].Update();}
+		MiniMapFrameTexture.Update();
+		MiniMapPlayerTexture.Update();
+	}
+	void DrawTexture(RenderContext& rc)
+	{
+		MiniMapFrameTexture.Draw(rc);
+		for (int i = 0; i < sizeof(MiniMapEnemyTexture) / sizeof(MiniMapEnemyTexture[0]); i++)
+		{
+			if (EnemyFlag[i])
+			{
+				MiniMapEnemyTexture[i].Draw(rc);
+			}
+		}
+		MiniMapPlayerTexture.Draw(rc);
+	}
+
+	void ChangeFlag(bool Flag , int Number)
+	{EnemyFlag[Number] = Flag;}
+};
+struct DataUiTime
+{
+	SpriteRender MinuteTexture[2];
+	SpriteRender SecondTexture[2];
+	int Second;
+	int SecondMemory;
+	int Minute;
+	int MinuteMemory;
+	int Comma;
+	void InitTexture()
+	{
+		for (int i = 0; i < sizeof(MinuteTexture) / sizeof(MinuteTexture[0]); i++)
+		{
+			MinuteTexture[i].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
+			SecondTexture[i].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
+		}
+	}
+	void UpdateTexture()
+	{
+		for (int i = 0; i < sizeof(MinuteTexture) / sizeof(MinuteTexture[0]); i++)
+		{
+			MinuteTexture[i].Update();
+			SecondTexture[i].Update();
+		}
+	}
+	void DrawTexture(RenderContext& rc)
+	{
+		for (int i = 0; i < sizeof(MinuteTexture) / sizeof(MinuteTexture[0]); i++)
+		{
+			MinuteTexture[i].Draw(rc);
+			SecondTexture[i].Draw(rc);
+		}
+	}
 };
 
 struct DataUi
 {
-	Vector4 BulletIn  = { 1.0f , 1.0f , 1.0f , 1.0f };
-	Vector4 BulletOut = { 0.8f , 0.0f , 0.0f , 1.0f };
-	int BulletCount;
-	int BulletCount10;
-	int BulletCount1;
-	int BulletCountMemory;
-
-	int WaveCount;
-	int WaveCountMemory;
-
-	int EnemyCount;
-	int EnemyCountMemory;
-	int EnemyCount100;
-	int EnemyCount10;
-	int EnemyCount1;
-
-	int ScoreCount;
-	int ScoreCountMemory;
-	int ScoreCount10000000;
-	int ScoreCount1000000;
-	int ScoreCount100000;
-	int ScoreCount10000;
-	int ScoreCount1000;
-	int ScoreCount100;
-	int ScoreCount10;
-	int ScoreCount1;
-
-	int PlayerHp;
-	int PlayerHpMemory;
-
-	int Second;
-	int Minute;
-	int Comma;
-};
-struct DataUiTexture
-{
 	SpriteRender CanvasTexture;
 
-	SpriteRender PlayerHpTexture;
-	SpriteRender PlayerHpFrameTexture;
+	DataUiPlayerHp S_PlayerHp;
+	DataUiEnemyCount S_EnemyCount;
+	DataUiGun S_Gun;
+	DataUiScore S_Score;
+	DataUiWave S_Wave;
+	DataUiMiniMap S_MiniMap;
+	DataUiTime S_Time;
 
-	SpriteRender EnemyCountTexture[3];
-	SpriteRender EnemyIconTexture;
-
-	SpriteRender WaveTexture;
-	SpriteRender WaveFrameTexture;
-
-	SpriteRender BulletCountTexture[2];
-	SpriteRender GunFrameTexture;
-
-	SpriteRender ScoreCountTexture[8];
-	SpriteRender ScoreTexture;
-
-	SpriteRender MiniMapFrameTexture;
-	SpriteRender MiniMapPlayerTexture;
-	SpriteRender MiniMapEnemyTexture[2];
-
-	SpriteRender MinuteTexture[2];
-	SpriteRender SecondTexture[2];
 	void TextureInit()
 	{
 		CanvasTexture.Init("Assets/Sprite/Ui/Canvas.DDS", 1920.0f, 1080.0f, true);
-
-		PlayerHpTexture.Init("Assets/Sprite/Ui/Hp/Hp.DDS", 280.0f, 80.0f, true);
-		PlayerHpFrameTexture.Init("Assets/Sprite/Ui/Hp/HpFrame.DDS", 300.0f, 100.0f, true);
-
-		BulletCountTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
-		BulletCountTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
-		GunFrameTexture.Init("Assets/Sprite/Ui/GunFrame.DDS", 300.0f, 100.0f, true);
-
-		ScoreCountTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreCountTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreCountTexture[2].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreCountTexture[3].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreCountTexture[4].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreCountTexture[5].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreCountTexture[6].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreCountTexture[7].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		ScoreTexture.Init("Assets/Sprite/Ui/Score.DDS", 320.0f, 80.0f, true);
-
-		WaveTexture.Init("Assets/Sprite/Ui/Wave/Wave1.DDS", 250.0f, 80.0f, true);
-		WaveFrameTexture.Init("Assets/Sprite/Ui/Wave/WaveFrame.DDS", 300.0f, 100.0f, true);
-
-		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMap.DDS", 380.0f, 380.0f, true);
-		MiniMapPlayerTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapPlayer.DDS", 15.0f, 15.0f, true);
-		MiniMapEnemyTexture[0].Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);
-		MiniMapEnemyTexture[1].Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);
-
-		EnemyCountTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		EnemyCountTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		EnemyCountTexture[2].Init("Assets/Sprite/Ui/Count/0.DDS", 80.0f, 80.0f, true);
-		EnemyIconTexture.Init("Assets/Sprite/Ui/EnemyCounter/EnemyIcon.DDS", 150.0f, 75.0f, true);
-
-		MinuteTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
-		MinuteTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
-		SecondTexture[0].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
-		SecondTexture[1].Init("Assets/Sprite/Ui/Count/0.DDS", 50.0f, 50.0f, true);
+		S_PlayerHp.InitTexture();
+		S_EnemyCount.InitTexture();
+		S_Gun.InitTexture();
+		S_Score.InitTexture();
+		S_Wave.InitTexture();
+		S_MiniMap.InitTexture();
+		S_Time.InitTexture();
 	}
 	void TextureUpdate()
 	{
 		CanvasTexture.Update();
-
-		PlayerHpTexture.Update();
-		PlayerHpFrameTexture.Update();
-
-		EnemyCountTexture[0].Update();
-		EnemyCountTexture[1].Update();
-		EnemyCountTexture[2].Update();
-		EnemyIconTexture.Update();
-
-		WaveTexture.Update();
-		WaveFrameTexture.Update();
-		
-		BulletCountTexture[0].Update();
-		BulletCountTexture[1].Update();
-		GunFrameTexture.Update();
-
-		ScoreCountTexture[0].Update();
-		ScoreCountTexture[1].Update();
-		ScoreCountTexture[2].Update();
-		ScoreCountTexture[3].Update();
-		ScoreCountTexture[4].Update();
-		ScoreCountTexture[5].Update();
-		ScoreCountTexture[6].Update();
-		ScoreCountTexture[7].Update();
-		ScoreTexture.Update();
-
-		MiniMapFrameTexture.Update();
-		MiniMapPlayerTexture.Update();
-		MiniMapEnemyTexture[0].Update();
-		MiniMapEnemyTexture[1].Update();
-
-		MinuteTexture[0].Update();
-		MinuteTexture[1].Update();
-		SecondTexture[0].Update();
-		SecondTexture[1].Update();
+		S_PlayerHp.UpdateTexture();
+		S_EnemyCount.UpdateTexture();
+		S_Gun.UpdateTexture();
+		S_Score.UpdateTexture();
+		S_Wave.UpdateTexture();
+		S_MiniMap.UpdateTexture();
+		S_Time.UpdateTexture();
 	}
 	void TextureRender(RenderContext& rc)
 	{
 		CanvasTexture.Draw(rc);
-
-		PlayerHpTexture.Draw(rc);
-		PlayerHpFrameTexture.Draw(rc);
-		
-		BulletCountTexture[0].Draw(rc);
-		BulletCountTexture[1].Draw(rc);
-		GunFrameTexture.Draw(rc);
-		
-		WaveTexture.Draw(rc);
-		WaveFrameTexture.Draw(rc);
-
-		MiniMapFrameTexture.Draw(rc);
-		MiniMapPlayerTexture.Draw(rc);
-		//MiniMapEnemyTexture.Draw(rc);
-
-		EnemyCountTexture[0].Draw(rc);
-		EnemyCountTexture[1].Draw(rc);
-		EnemyCountTexture[2].Draw(rc);
-		EnemyIconTexture.Draw(rc);
-
-		ScoreCountTexture[0].Draw(rc);
-		ScoreCountTexture[1].Draw(rc);
-		ScoreCountTexture[2].Draw(rc);
-		ScoreCountTexture[3].Draw(rc);
-		ScoreCountTexture[4].Draw(rc);
-		ScoreCountTexture[5].Draw(rc);
-		ScoreCountTexture[6].Draw(rc);
-		ScoreCountTexture[7].Draw(rc);
-		ScoreTexture.Draw(rc);
-
-		MinuteTexture[0].Draw(rc);
-		MinuteTexture[1].Draw(rc);
-		SecondTexture[0].Draw(rc);
-		SecondTexture[1].Draw(rc);
+		S_PlayerHp.DrawTexture(rc);
+		S_EnemyCount.DrawTexture(rc);
+		S_Gun.DrawTexture(rc);
+		S_Score.DrawTexture(rc);
+		S_Wave.DrawTexture(rc);
+		S_MiniMap.DrawTexture(rc);
+		S_Time.DrawTexture(rc);
 	}
 };

@@ -6,8 +6,8 @@ UIに表示するステータス
 ・銃の種類〇
 ・銃の標準〇
 ・スコアボード〇
-・ミニマップ
-・タイム
+・ミニマップ〇
+・タイム〇
 ・現在のウェーブ〇
 ・残りエネミー数〇
 ・背景〇
@@ -21,6 +21,8 @@ public:
 	void Update();
 	void Render(RenderContext& rc);
 
+	void ListReset();
+
 	void Wave();
 	void BulletCount();
 	void EnemyCount();
@@ -28,22 +30,24 @@ public:
 	void PlayerHp();
 	void Time();
 	void MiniMap();
+
+	void NumberTexture(SpriteRender& Sprite, int Number);
 private:
 	DataUi S_Ui;
-	DataUiTexture S_UiTexture;
 	
 	ClassGame S_Game;
 	ClassGun S_Gun;
 	ClassPlayer S_Player;
 	ClassEnemy S_Enemy;
+	ClassObject S_Object;
 	
 	std::vector<Enemy*> P_Enemy;
 
 	Level2DRender Level2D;
 
+	FontRender FX;
+	wchar_t M_X[256];
+
 	int Count = 0;
-	int Size = 0;
-	int SizeX = 0;
-	int SizeY = 0;
 };
 

@@ -18,6 +18,15 @@ void GameCamera::Update()
 
 	g_camera3D->SetPosition(S_Camera.M_CameraPosition);
 	g_camera3D->SetTarget(S_Camera.M_CameraTarget);
+
+	swprintf_s(M_X, 256, L"Angle:%d", S_Camera.M_Angle);
+	FX.SetText(M_X);
+	FX.SetPosition({ 0.0f,0.0f,0.0f });
+	FX.SetScale(1.0f);
+}
+void GameCamera::Render(RenderContext& rc)
+{
+	FX.Draw(rc);
 }
 
 void GameCamera::CameraMove(Vector2 Position)

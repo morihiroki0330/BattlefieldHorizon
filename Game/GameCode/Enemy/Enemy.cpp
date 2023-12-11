@@ -4,6 +4,7 @@
 #include "GameCode/GameCode.h"
 bool Enemy::Start()
 {
+	S_Enemy.M_CreateFlag = true;
 	S_Enemy.M_EnemyModel.Init("Assets/modelData/Enemy/Enemy.tkm");
 	S_Enemy.M_EnemyController.Init(50.0f, 50.0f, S_Enemy.M_EnemyPosition);
 	
@@ -25,6 +26,10 @@ void Enemy::Update()
 	EnemyCoolTime();
 
 	S_Enemy.M_EnemyPosition = S_Enemy.M_EnemyController.Execute(S_Enemy.M_EnemySpeed, 1.0f / 60.0f);
+	if (S_Enemy.M_EnemyPosition.y < -500.0f)
+	{
+		S_Enemy.M_EnemyPosition.y = 2000.0f;
+	}
 	S_Enemy.M_EnemyModel.SetPosition(S_Enemy.M_EnemyPosition);
 	S_Enemy.M_EnemyModel.Update();
 }
