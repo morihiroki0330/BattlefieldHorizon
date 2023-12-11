@@ -32,5 +32,11 @@ private:
 
 	FontRender FX;
 	wchar_t M_X[256];
+	
+	FontRender FY;
+	wchar_t M_Y[256];
+
+	FontRender FZ;
+	wchar_t M_Z[256];
 }; 
 

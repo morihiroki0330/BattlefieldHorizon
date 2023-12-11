@@ -187,7 +187,7 @@ struct DataEnemySpawner
 {
 	ModelRender M_EnemySpawnerModel;
 	Vector3 M_EnemySpawnerPosition = { 0.0f,200.0f,0.0f };
-	Vector3 M_EnemySetPosition = { 0.0f,500.0f,0.0f };
+	Vector3 M_EnemySetPosition = { 0.0f,2500.0f,0.0f };
 
 	int M_EnemyCount = 0;
 	int M_EnemyCountMax = 15;

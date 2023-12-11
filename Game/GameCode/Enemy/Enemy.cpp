@@ -26,10 +26,12 @@ void Enemy::Update()
 	EnemyCoolTime();
 
 	S_Enemy.M_EnemyPosition = S_Enemy.M_EnemyController.Execute(S_Enemy.M_EnemySpeed, 1.0f / 60.0f);
-	if (S_Enemy.M_EnemyPosition.y < -500.0f)
+	if (S_Enemy.M_EnemyPosition.y < -1000.0f)
 	{
-		S_Enemy.M_EnemyPosition.y = 2000.0f;
+		S_Enemy.M_EnemyPosition.y = 2500.0f;
+		S_Enemy.M_EnemySpeed.y = 0.0f;
 	}
+	S_Enemy.M_EnemyController.SetPosition(S_Enemy.M_EnemyPosition);
 	S_Enemy.M_EnemyModel.SetPosition(S_Enemy.M_EnemyPosition);
 	S_Enemy.M_EnemyModel.Update();
 }
@@ -55,8 +57,6 @@ void Enemy::EnemyMove()
 void Enemy::EnemyFall()
 {
 	S_Enemy.M_EnemySpeed.y -= 10.0f;
-	if (S_Enemy.M_EnemyPosition.y < -100.0f)
-	{S_Enemy.M_EnemyPosition.y = 500.0f;}
 }
 void Enemy::EnemyDead()
 {

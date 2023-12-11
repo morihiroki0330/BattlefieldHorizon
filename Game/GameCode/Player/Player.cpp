@@ -30,8 +30,10 @@ void Player::Update()
 	S_Player.M_PlayerPosition = S_Player.M_PlayerController.Execute(S_Player.M_PlayerSpeed, 1.0f / 60.0f);
 	if (S_Player.M_PlayerPosition.y < -1000.0f)
 	{
-		S_Player.M_PlayerPosition.y = 2000.0f;
+		S_Player.M_PlayerPosition.y = 2500.0f;
+		S_Player.M_PlayerSpeed.y = 0.0f;
 	}
+	S_Player.M_PlayerController.SetPosition(S_Player.M_PlayerPosition);
 	S_Player.M_PlayerGhost.SetPosition(S_Player.M_PlayerPosition);
 	S_Player.M_PlayerModel.SetPosition(S_Player.M_PlayerPosition);
 	S_Player.M_PlayerModel.Update();
@@ -46,15 +48,27 @@ void Player::Update()
 		}
 	}
 
-	swprintf_s(M_X, 256, L"Y:%f", S_Player.M_PlayerPosition.y);
+	swprintf_s(M_X, 256, L"SpeedY:%f", S_Player.M_PlayerSpeed.y);
 	FX.SetText(M_X);
 	FX.SetPosition({ -500.0f,200.0f,0.0f });
 	FX.SetScale(1.0f);
+
+	swprintf_s(M_Y, 256, L"PositionY:%f", S_Player.M_PlayerPosition.y);
+	FY.SetText(M_Y);
+	FY.SetPosition({ -500.0f,100.0f,0.0f });
+	FY.SetScale(1.0f);
+
+	swprintf_s(M_Z, 256, L"ControllerY:%f", S_Player.M_PlayerController.GetPosition().y);
+	FZ.SetText(M_Z);
+	FZ.SetPosition({ -500.0f,0.0f,0.0f });
+	FZ.SetScale(1.0f);
 }
 void Player::Render(RenderContext& rc)
 {
 	S_Player.M_PlayerModel.Draw(rc);
 	FX.Draw(rc);
+	FY.Draw(rc);
+	FZ.Draw(rc);
 }
 
 void Player::PlayerMove()
