@@ -21,8 +21,6 @@ public:
 	void Update();
 	void Render(RenderContext& rc);
 
-	void ListReset();
-
 	void Wave();
 	void BulletCount();
 	void EnemyCount();

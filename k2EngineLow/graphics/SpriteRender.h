@@ -26,6 +26,12 @@ namespace nsK2EngineLow
 			AlphaBlendMode alphaBlendMode = AlphaBlendMode_Trans
 		);
 
+		void MiniMapInit
+		(
+			SpriteInitData InitData,
+			AlphaBlendMode alphaBlendMode = AlphaBlendMode_Trans
+		);
+
 		//更新
 		void Update()
 		{
@@ -100,7 +106,7 @@ namespace nsK2EngineLow
 		//画像変換
 
 		void TextureSet(const char* Sprite);
-
+	
 	private:
 		//スプライト
 		Texture M_Texture;

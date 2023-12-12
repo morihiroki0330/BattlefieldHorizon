@@ -4,7 +4,7 @@ TileMap::TileMap()
 {
 	M_TextureFilePath[GROUNDTYPE_GRASS] = L"Assets/modelData/TileMap/TileTexture/Grass.DDS";
 	M_TextureFilePath[GROUNDTYPE_SOIL] = L"Assets/modelData/TileMap/TileTexture/Soil.DDS";
-	M_TextureFilePath[GROUNDTEXTURE] = L"Assets/modelData/TileMap/TileMapData/TextureMap.DDS";
+	M_TextureFilePath[GROUNDTEXTURE] = L"Assets/modelData/TileMap/TileMapData/TextureMap2.DDS";
 	M_TextureFilePath[GROUNDHEIGHT] = L"Assets/modelData/TileMap/TileMapData/HeightMap.DDS";
 }
 

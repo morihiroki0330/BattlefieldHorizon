@@ -65,6 +65,16 @@ namespace nsK2EngineLow
 		m_sprite.Init(InitData);
 	}
 
+	void SpriteRender::MiniMapInit
+	(
+		SpriteInitData Data,
+		AlphaBlendMode alphaBlendMode
+	)
+	{
+		Data.m_alphaBlendMode = alphaBlendMode;
+		m_sprite.Init(Data);
+	}
+
 	void SpriteRender::TextureSet(const char* Sprite)
 	{
 		InitData.m_ddsFilePath[0] = Sprite;

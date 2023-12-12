@@ -15,7 +15,7 @@ bool Ui::Start()
 			
 	if (objData.EqualObjectName("MiniMap") == true)
 	{
-		S_Ui.S_MiniMap.MiniMapFrameTexture.SetPosition(objData.position);
+		S_Ui.S_MiniMap.MiniMapTexture.SetPosition(objData.position);
 		return true;
 	}
 	if (objData.EqualObjectName("MiniMapPlayer") == true)
@@ -24,6 +24,11 @@ bool Ui::Start()
 		return false;
 	}
 
+	if (objData.EqualObjectName("MiniMapFrame") == true)
+	{
+		S_Ui.S_MiniMap.MiniMapFrameTexture.SetPosition(objData.position);
+		return true;
+	}
 	if (objData.EqualObjectName("WaveFrame") == true)
 	{
 		S_Ui.S_Wave.WaveFrameTexture.SetPosition(objData.position);
@@ -130,12 +135,7 @@ void Ui::Update()
 	Time();
 	S_Ui.TextureUpdate();
 
-	if (g_pad[0]->IsTrigger(enButtonB))
-	{
-		ListReset();
-	}
-
-	swprintf_s(M_X, 256, L"Size:%d", P_Enemy.size());
+	swprintf_s(M_X, 256, L"U:%f", S_Ui.S_MiniMap.CharacterUV.x);
 	FX.SetText(M_X);
 	FX.SetPosition({ 0.0f,200.0f,0.0f });
 	FX.SetScale(1.0f);
@@ -144,12 +144,13 @@ void Ui::Render(RenderContext& rc)
 {
 	S_Ui.TextureRender(rc);
 	FX.Draw(rc);
-}
-
-void Ui::ListReset()
-{
-	int ad = 5;
-	ad += 15;
+	for (int i = 0; i < P_Enemy.size(); i++)
+	{
+		if (S_Ui.S_MiniMap.EnemyFlag[i])
+		{
+			S_Ui.S_MiniMap.MiniMapEnemyTexture[i].Draw(rc);
+		}
+	}
 }
 
 void Ui::Wave()
@@ -245,6 +246,17 @@ void Ui::PlayerHp()
 }
 void Ui::MiniMap()
 {
+	const Vector2 Size = {38000.0f,38000.0f};
+
+	Vector2 Speed = { S_Player.P_Player->GetSpped().x,S_Player.P_Player->GetSpped().z };
+
+	Vector2 Normalize = { Speed.x / Size.x ,-Speed.y / Size.y };
+
+	Vector2 UV = { S_Ui.S_MiniMap.CharacterUV.x + Normalize.x , S_Ui.S_MiniMap.CharacterUV.y + Normalize.y };
+
+	S_Ui.S_MiniMap.NewUV = UV;
+
+	//エネミーの座標
 	for (int i = 0 ; i < P_Enemy.size(); i++)
 	{
 		Vector3 Pos = { ((-S_Player.P_Player->GetPosition().x / 10) + (P_Enemy[i]->GetPosition().x / 10)) + 770.0f , ((-S_Player.P_Player->GetPosition().z / 10) + (P_Enemy[i]->GetPosition().z / 10)) + 350.0f , 0.0f };

@@ -73,32 +73,30 @@ SPSIn VSMain(SVSIn vsIn)
 float4 PSMain(SPSIn psIn,PixelInput piIn) : SV_Target0
 {
 	float4 TexColor = g_TextureMap.Sample(g_sampler,psIn.uv);
-
+	float2 scaledUV = floor(psIn.uv * float2(10.0, 10.0)) / 10.0;
     if(TexColor.r>TexColor.g)
 	{
 		if(TexColor.r>TexColor.b)
 		{
-			TexColor = g_SoilMap.Sample(g_sampler,psIn.uv);
-			TexColor.rgb = pow(TexColor.rgb, 1.0 / 2.2);
+			TexColor = g_SoilMap.Sample(g_sampler,scaledUV);
 		}
 	}else{
 		if(TexColor.g>TexColor.r)
 		{
 			if(TexColor.g>TexColor.b)
 			{
-				TexColor = g_GrassMap.Sample(g_sampler,psIn.uv);
-				TexColor.rgb = pow(TexColor.rgb, 1.0 / 2.2);
+				TexColor = g_GrassMap.Sample(g_sampler,scaledUV);
 			}
 	}else{
 			if(TexColor.b>TexColor.g)
 			{
 				if(TexColor.b>TexColor.r)
 				{
-					TexColor = g_SoilMap.Sample(g_sampler,psIn.uv);
-					TexColor.rgb = pow(TexColor.rgb, 1.0 / 2.2);
+					TexColor = g_SoilMap.Sample(g_sampler,scaledUV);
 				}
 			}
 		}
 	}
+	TexColor.rgb = pow(TexColor.rgb, 1.0 / 2.2);
 	return TexColor;
 }

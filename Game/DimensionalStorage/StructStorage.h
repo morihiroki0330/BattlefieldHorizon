@@ -340,14 +340,35 @@ struct DataUiWave
 struct DataUiMiniMap
 {
 	SpriteRender MiniMapFrameTexture;
+	SpriteRender MiniMapTexture;
 	SpriteRender MiniMapPlayerTexture;
 	SpriteRender MiniMapEnemyTexture[100];
 	bool EnemyFlag[100];
+	Vector2 CharacterUV = { 0.5f,0.5f };
+	Vector2 NewUV = { 0.5f,0.5f };
 	void InitTexture()
 	{
+		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapFrame.DDS", 390.0f, 390.0f, true);
+
+		SpriteInitData M_InitData;
+		M_InitData.m_ddsFilePath[0] = "Assets/Sprite/Ui/MiniMap/MiniMap.DDS";
+		M_InitData.m_ddsFilePath[1] = "Assets/modelData/TileMap/TileTexture/Grass.DDS";
+		M_InitData.m_ddsFilePath[2] = "Assets/modelData/TileMap/TileTexture/Soil.DDS";
+
+		M_InitData.m_fxFilePath = "Assets/shader/MiniMap.fx";
+		M_InitData.m_vsEntryPointFunc = "VSMain";
+		M_InitData.m_psEntryPoinFunc = "PSMain";
+
+		M_InitData.m_expandConstantBuffer = &NewUV;
+		M_InitData.m_expandConstantBufferSize = sizeof(NewUV);
+
+		M_InitData.m_width = static_cast<UINT>(380.0f);
+		M_InitData.m_height = static_cast<UINT>(380.0f);
+
+		MiniMapTexture.MiniMapInit(M_InitData);
+
 		for (int i = 0; i < sizeof(MiniMapEnemyTexture) / sizeof(MiniMapEnemyTexture[0]); i++)
 		{MiniMapEnemyTexture[i].Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);}
-		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMap.DDS", 380.0f, 380.0f, true);
 		MiniMapPlayerTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapPlayer.DDS", 15.0f, 15.0f, true);
 	}
 	void UpdateTexture()
@@ -355,11 +376,13 @@ struct DataUiMiniMap
 		for (int i = 0; i < sizeof(MiniMapEnemyTexture) / sizeof(MiniMapEnemyTexture[0]); i++)
 		{MiniMapEnemyTexture[i].Update();}
 		MiniMapFrameTexture.Update();
+		MiniMapTexture.Update();
 		MiniMapPlayerTexture.Update();
 	}
 	void DrawTexture(RenderContext& rc)
 	{
 		MiniMapFrameTexture.Draw(rc);
+		MiniMapTexture.Draw(rc);
 		MiniMapPlayerTexture.Draw(rc);
 	}
 

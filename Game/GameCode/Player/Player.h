@@ -23,6 +23,9 @@ public:
 
 	const Vector3& GetPosition()
 	{return S_Player.M_PlayerPosition;}
+
+	const Vector3& GetSpped()
+	{return S_Player.M_PlayerPosition;}
 private:
 	DataPlayer S_Player;
 
