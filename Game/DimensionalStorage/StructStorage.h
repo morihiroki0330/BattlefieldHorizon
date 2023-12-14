@@ -139,12 +139,12 @@ struct DataPlayer
 struct DataCamera
 {
 	Vector3 M_CameraPosition = { 0.0f , 150.0f , 0.0f };
-	Vector3 M_CameraTarget   = { 0.0f , 0.0f   , 4800000.0f };
+	Vector3 M_CameraTarget   = { 0.0f , 0.0f   , 9000000.0f };
 	Vector2 M_MovePosition   = { 0.0f , 0.0f };
 
 	int M_Angle = 0;
 
-	const float M_CircleFication = 4800000.0f;
+	const float M_CircleFication = 9000000.0f;
 	const float M_MagniFication  = 10000.0f;
 };
 
@@ -342,6 +342,7 @@ struct DataUiMiniMap
 	SpriteRender MiniMapFrameTexture;
 	SpriteRender MiniMapTexture;
 	SpriteRender MiniMapPlayerTexture;
+	SpriteRender MiniMapPlayerDirectionTexture;
 	SpriteRender MiniMapEnemyTexture[100];
 	bool EnemyFlag[100];
 	Vector2 CharacterUV = { 0.5f,0.5f };
@@ -370,6 +371,7 @@ struct DataUiMiniMap
 		for (int i = 0; i < sizeof(MiniMapEnemyTexture) / sizeof(MiniMapEnemyTexture[0]); i++)
 		{MiniMapEnemyTexture[i].Init("Assets/Sprite/Ui/MiniMap/MiniMapEnemy.DDS", 15.0f, 15.0f, true);}
 		MiniMapPlayerTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapPlayer.DDS", 15.0f, 15.0f, true);
+		MiniMapPlayerDirectionTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapPlayerDirection.DDS", 15.0f, 20.0f, true);
 	}
 	void UpdateTexture()
 	{
@@ -378,12 +380,14 @@ struct DataUiMiniMap
 		MiniMapFrameTexture.Update();
 		MiniMapTexture.Update();
 		MiniMapPlayerTexture.Update();
+		MiniMapPlayerDirectionTexture.Update();
 	}
 	void DrawTexture(RenderContext& rc)
 	{
 		MiniMapFrameTexture.Draw(rc);
 		MiniMapTexture.Draw(rc);
 		MiniMapPlayerTexture.Draw(rc);
+		MiniMapPlayerDirectionTexture.Draw(rc);
 	}
 
 	void ChangeFlag(bool Flag , int Number)

@@ -18,6 +18,8 @@ public:
 	{return S_Camera.M_CameraPosition;}
 	Vector3 GetCameraTarget()
 	{return S_Camera.M_CameraTarget;}
+	int GetAngle()
+	{return S_Camera.M_Angle;}
 private:
 	DataCamera S_Camera;
 	
@@ -25,5 +27,8 @@ private:
 
 	FontRender FX;
 	wchar_t M_X[256];
+
+	FontRender FY;
+	wchar_t M_Y[256];
 };
 

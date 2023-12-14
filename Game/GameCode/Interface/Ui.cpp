@@ -21,6 +21,7 @@ bool Ui::Start()
 	if (objData.EqualObjectName("MiniMapPlayer") == true)
 	{
 		S_Ui.S_MiniMap.MiniMapPlayerTexture.SetPosition(objData.position);
+		S_Ui.S_MiniMap.MiniMapPlayerDirectionTexture.SetPosition(objData.position);
 		return false;
 	}
 
@@ -135,7 +136,7 @@ void Ui::Update()
 	Time();
 	S_Ui.TextureUpdate();
 
-	swprintf_s(M_X, 256, L"U:%f", S_Ui.S_MiniMap.CharacterUV.x);
+	swprintf_s(M_X, 256, L"Pivot:%f", S_Ui.S_MiniMap.MiniMapPlayerDirectionTexture.GetPivot().y);
 	FX.SetText(M_X);
 	FX.SetPosition({ 0.0f,200.0f,0.0f });
 	FX.SetScale(1.0f);
@@ -246,7 +247,8 @@ void Ui::PlayerHp()
 }
 void Ui::MiniMap()
 {
-	const Vector2 Size = {38000.0f,38000.0f};
+	//マップの座標
+	const Vector2 Size = { 38000.0f,38000.0f };
 
 	Vector2 Speed = { S_Player.P_Player->GetSpped().x,S_Player.P_Player->GetSpped().z };
 
@@ -257,17 +259,26 @@ void Ui::MiniMap()
 	S_Ui.S_MiniMap.NewUV = UV;
 
 	//エネミーの座標
-	for (int i = 0 ; i < P_Enemy.size(); i++)
+	for (int i = 0; i < P_Enemy.size(); i++)
 	{
 		Vector3 Pos = { ((-S_Player.P_Player->GetPosition().x / 10) + (P_Enemy[i]->GetPosition().x / 10)) + 770.0f , ((-S_Player.P_Player->GetPosition().z / 10) + (P_Enemy[i]->GetPosition().z / 10)) + 350.0f , 0.0f };
 		if ((abs)(S_Ui.S_MiniMap.MiniMapPlayerTexture.GetPosition().x - Pos.x) < 190.0f && (abs)(S_Ui.S_MiniMap.MiniMapPlayerTexture.GetPosition().y - Pos.y) < 190.0f)
 		{
 			S_Ui.S_MiniMap.ChangeFlag(true, i);
-		}else {
+		}
+		else {
 			S_Ui.S_MiniMap.ChangeFlag(false, i);
 		}
 		S_Ui.S_MiniMap.MiniMapEnemyTexture[i].SetPosition(Pos);
 	}
+
+	//矢印の向き
+	S_Ui.S_MiniMap.MiniMapPlayerDirectionTexture.SetPivot({0.5f, -0.5f});
+
+	Quaternion Rot;
+	Rot.SetRotationDegZ(-float(S_Object.P_GameCamera->GetAngle() / 10));
+	S_Ui.S_MiniMap.MiniMapPlayerDirectionTexture.SetRotation(Rot);
+
 }
 void Ui::Time()
 {

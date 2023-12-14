@@ -66,9 +66,9 @@ void Player::Update()
 void Player::Render(RenderContext& rc)
 {
 	S_Player.M_PlayerModel.Draw(rc);
-	FX.Draw(rc);
+	/*FX.Draw(rc);
 	FY.Draw(rc);
-	FZ.Draw(rc);
+	FZ.Draw(rc);*/
 }
 
 void Player::PlayerMove()

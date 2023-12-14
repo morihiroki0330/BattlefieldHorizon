@@ -59,6 +59,9 @@ void Mouse::MouseMove()
     M_PrevMouse.x = M_Mouse.x;
     M_PrevMouse.y = M_Mouse.y;
 
+	M_Delta.x *= 1.5;
+	M_Delta.y *= 1.5;
+
     if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
     {
 		S_Object.P_GameCamera->CameraMove(M_Delta);
