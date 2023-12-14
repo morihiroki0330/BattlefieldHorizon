@@ -6,7 +6,7 @@ bool Enemy::Start()
 {
 	S_Enemy.M_CreateFlag = true;
 	S_Enemy.M_EnemyModel.Init("Assets/modelData/Enemy/Enemy.tkm");
-	S_Enemy.M_EnemyController.Init(50.0f, 50.0f, S_Enemy.M_EnemyPosition);
+	S_Enemy.M_EnemyController.Init(75.0f, 75.0f, S_Enemy.M_EnemyPosition);
 	
 	S_EnemySpawner.P_EnemySpawner = FindGO<EnemySpawner>("enemyspawner");
 	return true;
@@ -51,12 +51,12 @@ void Enemy::EnemyMove()
 	directionZ /= distance;
 
 	// ˆê’è‚Ì‘¬“x‚ÅˆÚ“®
-	S_Enemy.M_EnemySpeed.x = directionX * 600.0f;
-	S_Enemy.M_EnemySpeed.z = directionZ * 600.0f;
+	S_Enemy.M_EnemySpeed.x = directionX * 650.0f;
+	S_Enemy.M_EnemySpeed.z = directionZ * 650.0f;
 }
 void Enemy::EnemyFall()
 {
-	S_Enemy.M_EnemySpeed.y -= 10.0f;
+	S_Enemy.M_EnemySpeed.y -= 15.0f;
 }
 void Enemy::EnemyDead()
 {

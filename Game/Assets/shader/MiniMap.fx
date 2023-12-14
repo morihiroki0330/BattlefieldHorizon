@@ -27,6 +27,8 @@ cbuffer CharacterCb : register(b1)
 Texture2D<float4> Texture : register(t0);
 Texture2D<float4> g_GrassMap : register(t1);
 Texture2D<float4> g_SoilMap : register(t2);
+Texture2D<float4> g_SeeMap : register(t3);
+
 sampler Sampler : register(s0);
 
 PSInput VSMain(VSInput In) 
@@ -54,7 +56,8 @@ float4 PSMain( PSInput In ) : SV_Target0
 			TexColor = g_SoilMap.Sample(Sampler,ExCord);
 			TexColor.rgb = pow(TexColor.rgb, 1.0 / 2.2);
 		}
-	}else{
+	}
+	else{
 		if(TexColor.g>TexColor.r)
 		{
 			if(TexColor.g>TexColor.b)
@@ -67,7 +70,7 @@ float4 PSMain( PSInput In ) : SV_Target0
 			{
 				if(TexColor.b>TexColor.r)
 				{
-					TexColor = g_SoilMap.Sample(Sampler,ExCord);
+					TexColor = g_SeeMap.Sample(Sampler,ExCord);
 					TexColor.rgb = pow(TexColor.rgb, 1.0 / 2.2);
 				}
 			}

@@ -352,9 +352,10 @@ struct DataUiMiniMap
 		MiniMapFrameTexture.Init("Assets/Sprite/Ui/MiniMap/MiniMapFrame.DDS", 390.0f, 390.0f, true);
 
 		SpriteInitData M_InitData;
-		M_InitData.m_ddsFilePath[0] = "Assets/Sprite/Ui/MiniMap/MiniMap.DDS";
-		M_InitData.m_ddsFilePath[1] = "Assets/modelData/TileMap/TileTexture/Grass.DDS";
-		M_InitData.m_ddsFilePath[2] = "Assets/modelData/TileMap/TileTexture/Soil.DDS";
+		M_InitData.m_ddsFilePath[0] = "Assets/Sprite/Ui/MiniMap/TextureMap2.DDS";
+		M_InitData.m_ddsFilePath[1] = "Assets/modelData/TileMap/TileTexture/a.DDS";
+		M_InitData.m_ddsFilePath[2] = "Assets/modelData/TileMap/TileTexture/b.DDS";
+		M_InitData.m_ddsFilePath[3] = "Assets/modelData/TileMap/TileTexture/c.DDS";
 
 		M_InitData.m_fxFilePath = "Assets/shader/MiniMap.fx";
 		M_InitData.m_vsEntryPointFunc = "VSMain";
